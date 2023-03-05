@@ -12,13 +12,13 @@ import os
 
 
 if __name__=="__main__":
-    _pricing_module=True
-    _simulation_module=False
+    _pricing_module=False
+    _simulation_module=True
 
     # -----------------------
     # Region: Input Output location
     # -----------------------
-    io_path=r"/Users/krzysiekbienias/Documents/GitHub/witcher/io"
+    io_path=r"/Users/krzysiekbienias/Documents/GitHub/Witcher_In_Finance_world/io"
     if not os.path.isdir(io_path):
             raise ValueError("Path you chosen does not exists!")
     # -----------------------
@@ -59,6 +59,7 @@ if __name__=="__main__":
         print(f'Option price = {analytical_price.black_scholes_price}')
     
     if _simulation_module:
+        print("")
         print ("You are running simulation module...")
         output_name="risk_factors.xlsx"
         XlWingsTools.createNewExcelFile(os.path.join(io_path,output_name))
@@ -73,6 +74,7 @@ if __name__=="__main__":
                                     volatility=0.32,
                                     initialisation_point=44,
                                     simulation_schema="Exact_Solution")
+        print("lala")
         
 
         
