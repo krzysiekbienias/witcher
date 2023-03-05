@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>witcher.python_tool_kit.QuantLibToolKit &mdash; Witcher in Finance World 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Witcher in Finance World
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Witcher in Finance World</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">witcher.python_tool_kit.QuantLibToolKit</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for witcher.python_tool_kit.QuantLibToolKit</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">import</span> <span class="nn">QuantLib</span> <span class="k">as</span> <span class="nn">ql</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span><span class="p">,</span><span class="n">Iterable</span><span class="p">,</span><span class="n">Tuple</span><span class="p">,</span><span class="n">Dict</span><span class="p">,</span><span class="n">List</span><span class="p">,</span><span class="n">Generic</span><span class="p">,</span><span class="n">NewType</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+
+<span class="n">QL</span><span class="o">=</span><span class="n">NewType</span><span class="p">(</span><span class="s2">&quot;QL&quot;</span><span class="p">,</span><span class="n">ql</span><span class="p">)</span>
+<span class="n">DT</span><span class="o">=</span><span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;DT&#39;</span><span class="p">,</span><span class="n">bound</span><span class="o">=</span><span class="n">datetime</span><span class="p">)</span>
+<span class="n">HM</span><span class="o">=</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;HM&quot;</span><span class="p">,</span><span class="n">bound</span><span class="o">=</span><span class="n">Dict</span><span class="p">)</span>
+
+<div class="viewcode-block" id="QuantLibToolKit"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit">[docs]</a><span class="k">class</span> <span class="nc">QuantLibToolKit</span><span class="p">:</span>
+
+    <span class="n">_weekday_corrections</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Following&quot;</span><span class="p">:</span><span class="n">ql</span><span class="o">.</span><span class="n">Following</span><span class="p">,</span>
+                         <span class="s2">&quot;ModifiedFollowing&quot;</span><span class="p">:</span><span class="n">ql</span><span class="o">.</span><span class="n">ModifiedFollowing</span><span class="p">,</span>
+                         <span class="s2">&quot;Preceding&quot;</span><span class="p">:</span><span class="n">ql</span><span class="o">.</span><span class="n">ModifiedPreceding</span><span class="p">,</span>
+                         <span class="s2">&quot;ModifiedPreceding&quot;</span><span class="p">:</span><span class="n">ql</span><span class="o">.</span><span class="n">ModifiedPreceding</span><span class="p">,</span>
+                         <span class="s2">&quot;Unadjusted&quot;</span><span class="p">:</span><span class="n">ql</span><span class="o">.</span><span class="n">Unadjusted</span>
+
+                         <span class="p">}</span>
+
+    <span class="n">_date_generation_rules</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Backward&quot;</span><span class="p">:</span><span class="n">ql</span><span class="o">.</span><span class="n">DateGeneration</span><span class="o">.</span><span class="n">Backward</span><span class="p">,</span>
+                      <span class="s2">&quot;Forward&quot;</span><span class="p">:</span><span class="n">ql</span><span class="o">.</span><span class="n">DateGeneration</span><span class="o">.</span><span class="n">Forward</span><span class="p">}</span>
+
+<div class="viewcode-block" id="QuantLibToolKit.convertDate2QlDate"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.convertDate2QlDate">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">convertDate2QlDate</span><span class="p">(</span><span class="n">date</span><span class="p">:</span><span class="n">DT</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">QL</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;convertDate2QlDate</span>
+<span class="sd">        Description</span>
+<span class="sd">        -----------</span>
+<span class="sd">        function converts datetime date object and convert to equivalent quantlib Object</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        date : DT</span>
+<span class="sd">            date time object that gonna be converted. Must be passed as year, month, day</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        QL</span>
+<span class="sd">            date as a QuantLib object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+        <span class="n">ql_date</span> <span class="o">=</span> <span class="n">ql</span><span class="o">.</span><span class="n">Date</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ql_date</span></div>
+
+
+<div class="viewcode-block" id="QuantLibToolKit.setCalendar"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.setCalendar">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">setCalendar</span><span class="p">(</span><span class="n">country</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;theUK&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">QL</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;setCalendar</span>
+<span class="sd">        Description</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        country : str</span>
+<span class="sd">            Name of country according to business operates. Currently following calendars are available:</span>
+<span class="sd">            - USA</span>
+<span class="sd">            - UK</span>
+<span class="sd">            - Switzerland</span>
+<span class="sd">            - Poland</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        QL</span>
+<span class="sd">            _description_</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">country</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;USA&quot;</span><span class="p">,</span> <span class="s2">&quot;theUK&quot;</span><span class="p">,</span> <span class="s2">&quot;Switzerland&quot;</span><span class="p">,</span> <span class="s2">&quot;Poland&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;calendar name must be one of the following: &#39;USA&#39;, &#39;theUK&#39;, &#39;Switzerland&#39;, &#39;Poland&#39;&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">country</span> <span class="o">==</span> <span class="s1">&#39;USA&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ql</span><span class="o">.</span><span class="n">UnitedStates</span><span class="p">(</span><span class="n">ql</span><span class="o">.</span><span class="n">UnitedStates</span><span class="o">.</span><span class="n">NYSE</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">country</span> <span class="o">==</span> <span class="s1">&#39;theUK&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ql</span><span class="o">.</span><span class="n">UnitedKingdom</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">country</span> <span class="o">==</span> <span class="s1">&#39;Switzerland&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ql</span><span class="o">.</span><span class="n">Switzerland</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">country</span> <span class="o">==</span> <span class="s1">&#39;Poland&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ql</span><span class="o">.</span><span class="n">Poland</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="QuantLibToolKit.setDateCorrectionsSchema"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.setDateCorrectionsSchema">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">setDateCorrectionsSchema</span><span class="p">(</span><span class="n">corrections_map</span><span class="p">:</span><span class="n">HM</span><span class="o">=</span><span class="n">_weekday_corrections</span><span class="p">,</span>
+                              <span class="n">correction_rule</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;Following&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;setBusinessConvention</span>
+<span class="sd">        Description</span>
+<span class="sd">        -----------</span>
+<span class="sd">        This method defines business convention.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        _type_</span>
+<span class="sd">            _description_</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">corrections_map</span><span class="p">[</span><span class="n">correction_rule</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="QuantLibToolKit.setRuleOfDateGeneration"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.setRuleOfDateGeneration">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">setRuleOfDateGeneration</span><span class="p">(</span><span class="n">_date_generation_rules</span><span class="o">=</span><span class="n">_date_generation_rules</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;setRuleOfDateGeneration</span>
+<span class="sd">        Description</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        _type_</span>
+<span class="sd">            _description_</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ql</span><span class="o">.</span><span class="n">DateGeneration</span><span class="o">.</span><span class="n">Forward</span></div>
+
+
+<div class="viewcode-block" id="QuantLibToolKit.defineSchedule"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.defineSchedule">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">defineSchedule</span><span class="p">(</span><span class="n">effective_day</span><span class="p">:</span><span class="n">DT</span><span class="p">,</span>
+                       <span class="n">termination_date</span><span class="p">:</span><span class="n">DT</span><span class="p">,</span>
+                       <span class="n">freq_period_</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;monthly&quot;</span><span class="p">,</span>
+                       <span class="n">calendar_</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;theUK&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">QL</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;defineSchedule</span>
+<span class="sd">        Description</span>
+<span class="sd">        -----------</span>
+
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        effective_day : DT</span>
+<span class="sd">            _description_</span>
+<span class="sd">        termination_date : DT</span>
+<span class="sd">            _description_</span>
+<span class="sd">        freq_period_ : str, optional</span>
+<span class="sd">            _description_, by default &quot;monthly&quot;</span>
+<span class="sd">        calendar_ : str, optional</span>
+<span class="sd">            _description_, by default &quot;theUK&quot;</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        QL</span>
+<span class="sd">            _description_</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">ql</span><span class="o">.</span><span class="n">MakeSchedule</span><span class="p">(</span><span class="n">effectiveDate</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">convertDate2QlDate</span><span class="p">(</span><span class="n">effective_day</span><span class="p">),</span>
+                        <span class="n">terminationDate</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">convertDate2QlDate</span><span class="p">(</span><span class="n">termination_date</span><span class="p">),</span>
+                        <span class="n">frequency</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">setFrequency</span><span class="p">(</span><span class="n">freq_period_</span><span class="p">),</span>
+                        <span class="n">calendar</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">setCalendar</span><span class="p">(</span><span class="n">calendar_</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="QuantLibToolKit.setFrequency"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.setFrequency">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">setFrequency</span><span class="p">(</span><span class="n">freq_period</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;setFrequency</span>
+<span class="sd">        Description</span>
+<span class="sd">        -----------</span>
+<span class="sd">        This function set frequency period for calendar schedule.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        freq_period : str</span>
+<span class="sd">            one of possible frequency period.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        QL</span>
+<span class="sd">            frequency Period</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">freq_period</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;daily&#39;</span><span class="p">,</span> <span class="s2">&quot;once&quot;</span><span class="p">,</span> <span class="s2">&quot;monthly&quot;</span><span class="p">,</span> <span class="s2">&quot;quarterly&quot;</span><span class="p">,</span><span class="s2">&quot;annual&quot;</span><span class="p">,</span> <span class="s2">&quot;semiannual&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot; Name of the period must be one of following &#39;daily&#39;, &#39;once&#39;,&#39;monthly&#39;,&#39;quarterly&#39;,&#39;annual&#39;,&#39;semiannual&#39;. &quot;</span><span class="p">)</span>
+
+
+        <span class="k">if</span> <span class="n">freq_period</span><span class="o">==</span><span class="s1">&#39;daily&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ql</span><span class="o">.</span><span class="n">Daily</span>
+        <span class="k">if</span> <span class="n">freq_period</span><span class="o">==</span><span class="s1">&#39;once&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ql</span><span class="o">.</span><span class="n">Once</span>
+        <span class="k">if</span> <span class="n">freq_period</span><span class="o">==</span><span class="s1">&#39;monthly&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ql</span><span class="o">.</span><span class="n">Monthly</span>
+        <span class="k">if</span> <span class="n">freq_period</span><span class="o">==</span><span class="s1">&#39;quarterly&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ql</span><span class="o">.</span><span class="n">Quarterly</span>
+        <span class="k">if</span> <span class="n">freq_period</span><span class="o">==</span><span class="s1">&#39;annual&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ql</span><span class="o">.</span><span class="n">Annual</span>
+        <span class="k">if</span> <span class="n">freq_period</span><span class="o">==</span><span class="s1">&#39;semiannual&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ql</span><span class="o">.</span><span class="n">Semiannual</span></div></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Krzysztof Bienias.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
