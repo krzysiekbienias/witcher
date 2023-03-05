@@ -75,6 +75,7 @@ if __name__=="__main__":
                                     initialisation_point=44,
                                     simulation_schema="Exact_Solution")
         print("lala")
+        print(':dupa')
         
 
         
