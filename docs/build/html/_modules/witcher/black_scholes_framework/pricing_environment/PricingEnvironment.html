@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>witcher.black_scholes_framework.pricing_environment.PricingEnvironment &mdash; Witcher in Finance World 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Witcher in Finance World
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Witcher in Finance World</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">witcher.black_scholes_framework.pricing_environment.PricingEnvironment</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for witcher.black_scholes_framework.pricing_environment.PricingEnvironment</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">QuantLib</span> <span class="k">as</span> <span class="nn">ql</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">NewType</span>
+
+<span class="kn">from</span> <span class="nn">witcher.python_tool_kit.QuantLibToolKit</span> <span class="kn">import</span> <span class="n">QuantLibToolKit</span>
+
+
+
+<span class="n">QL</span> <span class="o">=</span> <span class="n">NewType</span><span class="p">(</span><span class="s2">&quot;QL&quot;</span><span class="p">,</span> <span class="n">ql</span><span class="p">)</span>
+
+<span class="n">DT</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;DT&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="PricingEnvironment"><a class="viewcode-back" href="../../../../witcher.black_scholes_framework.pricing_environment.html#witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment">[docs]</a><span class="k">class</span> <span class="nc">PricingEnvironment</span><span class="p">():</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">valuation_date</span><span class="p">:</span> <span class="n">DT</span><span class="p">,</span>
+                 <span class="n">termination_date</span><span class="p">:</span> <span class="n">DT</span><span class="p">,</span>
+                 <span class="n">calendar</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;theUK&quot;</span><span class="p">,</span>
+                 <span class="n">year_fraction_convention</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Actual365&quot;</span><span class="p">,</span>
+                 <span class="n">frequency</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Monthly&quot;</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;__init__</span>
+<span class="sd">        Description</span>
+<span class="sd">        -----------</span>
+<span class="sd">        This class sets up generic the environment for pricing different financial instruments.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        valuation_date : DT</span>
+<span class="sd">            The date you want to price financial instrument.</span>
+
+<span class="sd">        termination_date : DT</span>
+<span class="sd">            Date after which your trade expires.</span>
+<span class="sd">        calendar : str, optional</span>
+<span class="sd">            Name of the specific calendar of dates to follow, by default &quot;theUK&quot;. It corresponds with name of country.</span>
+<span class="sd">        year_fraction_convention : str, optional</span>
+<span class="sd">            Name of year count convention that sets rule how year fraction to be calculated, by default &quot;Actual365&quot;</span>
+<span class="sd">        frequency : str, optional</span>
+<span class="sd">            Name of frequency according to with tenors are generated. In particular daily if we want to have business days in our schedule,</span>
+<span class="sd">              by default &quot;Monthly&quot;</span>
+<span class="sd">            Possible parameters:</span>
+<span class="sd">            - daily</span>
+<span class="sd">            - once</span>
+<span class="sd">            - monthly</span>
+<span class="sd">            - quarterly</span>
+<span class="sd">            - annual</span>
+<span class="sd">            - semiannual</span>
+
+
+<span class="sd">        Note</span>
+<span class="sd">        ----</span>
+<span class="sd">        Please note that within this class as well as QuantLibToolKid are defined different static methods where variable are converted into.</span>
+<span class="sd">        This interface allows to User do not take care about it.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># -----------------------</span>
+        <span class="c1"># Region: Initialization</span>
+        <span class="c1"># -----------------------</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dt_valuation_date</span> <span class="o">=</span> <span class="n">valuation_date</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dt_termination_date</span> <span class="o">=</span> <span class="n">termination_date</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_s_calendar</span> <span class="o">=</span> <span class="n">calendar</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_s_year_fraction_conv</span> <span class="o">=</span> <span class="n">year_fraction_convention</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_s_frequency</span> <span class="o">=</span> <span class="n">frequency</span>
+        <span class="c1"># -----------------------</span>
+        <span class="c1"># END Region: Initialization</span>
+        <span class="c1"># -----------------------</span>
+
+        <span class="c1"># -----------------------</span>
+        <span class="c1"># Region: Quantlib Converter</span>
+        <span class="c1"># -----------------------</span>
+        <span class="n">ql_valuation_date</span> <span class="o">=</span> <span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">convertDate2QlDate</span><span class="p">(</span>
+            <span class="n">date</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_dt_valuation_date</span><span class="p">)</span>
+        <span class="n">ql_termination_date</span> <span class="o">=</span> <span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">convertDate2QlDate</span><span class="p">(</span>
+            <span class="n">date</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_dt_termination_date</span><span class="p">)</span>
+        <span class="n">date_correction_schema</span> <span class="o">=</span> <span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">setDateCorrectionsSchema</span><span class="p">()</span>
+        <span class="n">ql_year_fraction_conv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">setYearFractionConvention</span><span class="p">(</span>
+            <span class="n">year_fraction_conv</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_s_year_fraction_conv</span><span class="p">)</span>
+        <span class="n">ql_calendar</span> <span class="o">=</span> <span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">setCalendar</span><span class="p">(</span><span class="n">country</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_s_calendar</span><span class="p">)</span>
+
+        <span class="n">ql_schedule</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">setSchedule</span><span class="p">(</span><span class="n">effectiveDate</span><span class="o">=</span><span class="n">ql_valuation_date</span><span class="p">,</span>
+                                       <span class="n">terminationDate</span><span class="o">=</span><span class="n">ql_termination_date</span><span class="p">,</span>
+                                       <span class="n">tenor</span><span class="o">=</span><span class="n">ql</span><span class="o">.</span><span class="n">Period</span><span class="p">(</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">setFrequency</span><span class="p">(</span>
+                                           <span class="n">freq_period</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_s_frequency</span><span class="p">)),</span>
+                                       <span class="n">calendar</span><span class="o">=</span><span class="n">ql_calendar</span><span class="p">)</span>
+        <span class="c1"># -----------------------</span>
+        <span class="c1"># Region: Quantlib Converter</span>
+        <span class="c1"># -----------------------</span>
+
+        <span class="c1"># -----------------------</span>
+        <span class="c1"># Region: Attributes</span>
+        <span class="c1"># -----------------------</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scheduled_dates</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ql_schedule</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">year_fractions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getYearFractionSequence</span><span class="p">(</span><span class="n">schedule</span><span class="o">=</span><span class="n">ql_schedule</span><span class="p">,</span>
+                                                           <span class="n">convention</span><span class="o">=</span><span class="n">ql_year_fraction_conv</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">days_until_expiration</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scheduled_dates</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">scheduled_dates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># -----------------------</span>
+        <span class="c1"># End Region: Attributes</span>
+        <span class="c1"># -----------------------</span>
+
+<div class="viewcode-block" id="PricingEnvironment.setYearFractionConvention"><a class="viewcode-back" href="../../../../witcher.black_scholes_framework.pricing_environment.html#witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment.setYearFractionConvention">[docs]</a>    <span class="k">def</span> <span class="nf">setYearFractionConvention</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">year_fraction_conv</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Actual365&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QL</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;setYearFractionConvention</span>
+<span class="sd">        Description</span>
+<span class="sd">        -----------</span>
+<span class="sd">        Function defines how we will calculate year fraction.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        year_fraction_conv : string</span>
+<span class="sd">             Available alternatives: Actual360, Actual365, ActualActual, Thirty360, Business252</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ql.FractionConvention</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">year_fraction_conv</span> <span class="o">==</span> <span class="s1">&#39;Actual360&#39;</span><span class="p">):</span>
+            <span class="n">day_count</span> <span class="o">=</span> <span class="n">ql</span><span class="o">.</span><span class="n">Actual360</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">day_count</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">year_fraction_conv</span> <span class="o">==</span> <span class="s1">&#39;Actual365&#39;</span><span class="p">):</span>
+            <span class="n">day_count</span> <span class="o">=</span> <span class="n">ql</span><span class="o">.</span><span class="n">Actual365Fixed</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">day_count</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">year_fraction_conv</span> <span class="o">==</span> <span class="s1">&#39;ActualActual&#39;</span><span class="p">):</span>
+            <span class="n">day_count</span> <span class="o">=</span> <span class="n">ql</span><span class="o">.</span><span class="n">ActualActual</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">day_count</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">year_fraction_conv</span> <span class="o">==</span> <span class="s1">&#39;Thirty360&#39;</span><span class="p">):</span>
+            <span class="n">day_count</span> <span class="o">=</span> <span class="n">ql</span><span class="o">.</span><span class="n">Thirty360</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">day_count</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">year_fraction_conv</span> <span class="o">==</span> <span class="s1">&#39;Business252&#39;</span><span class="p">):</span>
+            <span class="n">day_count</span> <span class="o">=</span> <span class="n">ql</span><span class="o">.</span><span class="n">Business252</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">day_count</span></div>
+
+<span class="c1"># TODO implement simplare version of defining schedule</span>
+
+<div class="viewcode-block" id="PricingEnvironment.setSchedule"><a class="viewcode-back" href="../../../../witcher.black_scholes_framework.pricing_environment.html#witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment.setSchedule">[docs]</a>    <span class="k">def</span> <span class="nf">setSchedule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                    <span class="n">effectiveDate</span><span class="p">:</span> <span class="n">DT</span><span class="p">,</span>
+                    <span class="n">terminationDate</span><span class="p">:</span> <span class="n">DT</span><span class="p">,</span>
+                    <span class="n">tenor</span><span class="p">:</span> <span class="n">ql</span><span class="o">.</span><span class="n">Period</span><span class="p">,</span>
+                    <span class="n">calendar</span><span class="p">:</span> <span class="n">ql</span><span class="o">.</span><span class="n">Calendar</span><span class="p">,</span>
+                    <span class="n">convention</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">setDateCorrectionsSchema</span><span class="p">(),</span>
+                    <span class="n">termination_date_convention</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">setDateCorrectionsSchema</span><span class="p">(),</span>
+                    <span class="n">rule</span><span class="p">:</span> <span class="n">ql</span><span class="o">.</span><span class="n">DateGeneration</span> <span class="o">=</span> <span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">setRuleOfDateGeneration</span><span class="p">(),</span>
+                    <span class="n">endOfMonth</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ql</span><span class="o">.</span><span class="n">Schedule</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;setSchedule</span>
+<span class="sd">        Description</span>
+<span class="sd">        -----------</span>
+<span class="sd">        Method creates the schedule that handle with life cycle of a trade. The heart of the class.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        effectiveDate : DT</span>
+<span class="sd">            _description_</span>
+<span class="sd">        terminationDate : DT</span>
+<span class="sd">            _description_</span>
+<span class="sd">        tenor : ql.Period</span>
+<span class="sd">            _description_</span>
+<span class="sd">        calendar : ql.Calendar</span>
+<span class="sd">            _description_</span>
+<span class="sd">        convention : _type_, optional</span>
+<span class="sd">            _description_, by default QuantLibToolKit.setDateCorrectionsSchema()</span>
+<span class="sd">        termination_date_convention : _type_, optional</span>
+<span class="sd">            _description_, by default QuantLibToolKit.setDateCorrectionsSchema()</span>
+<span class="sd">        rule : ql.DateGeneration, optional</span>
+<span class="sd">            _description_, by default QuantLibToolKit.setRuleOfDateGeneration()</span>
+<span class="sd">        endOfMonth : bool, optional</span>
+<span class="sd">            _description_, by default False</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ql.Schedule</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">ql</span><span class="o">.</span><span class="n">Schedule</span><span class="p">(</span><span class="n">effectiveDate</span><span class="p">,</span> <span class="n">terminationDate</span><span class="p">,</span> <span class="n">tenor</span><span class="p">,</span> <span class="n">calendar</span><span class="p">,</span> <span class="n">convention</span><span class="p">,</span> <span class="n">termination_date_convention</span><span class="p">,</span> <span class="n">rule</span><span class="p">,</span> <span class="n">endOfMonth</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PricingEnvironment.getYearFractionSequence"><a class="viewcode-back" href="../../../../witcher.black_scholes_framework.pricing_environment.html#witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment.getYearFractionSequence">[docs]</a>    <span class="k">def</span> <span class="nf">getYearFractionSequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                                <span class="n">schedule</span><span class="p">:</span> <span class="n">ql</span><span class="o">.</span><span class="n">Schedule</span><span class="p">,</span>
+                                <span class="n">convention</span><span class="p">:</span> <span class="n">QL</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;consecutiveDatesYearFraction</span>
+<span class="sd">        Description</span>
+<span class="sd">        -----------</span>
+<span class="sd">        For given sequence of dates returns arr of list year fractions with edges T_i-1 and T_i</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        List[float]</span>
+<span class="sd">            list of year fraction&#39;s</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lf_year_fraction</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">scheduled_dates</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">schedule</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">scheduled_dates</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="c1"># frequency probably set as &#39;once&#39; so only valuation and termination date has been provided</span>
+            <span class="k">return</span> <span class="n">convention</span><span class="o">.</span><span class="n">yearFraction</span><span class="p">(</span><span class="n">scheduled_dates</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">scheduled_dates</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">scheduled_dates</span><span class="p">)):</span>
+            <span class="n">temp_yf</span> <span class="o">=</span> <span class="n">convention</span><span class="o">.</span><span class="n">yearFraction</span><span class="p">(</span>
+                <span class="n">scheduled_dates</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">scheduled_dates</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">lf_year_fraction</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp_yf</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">lf_year_fraction</span></div>
+
+<div class="viewcode-block" id="PricingEnvironment.displaySchedule"><a class="viewcode-back" href="../../../../witcher.black_scholes_framework.pricing_environment.html#witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment.displaySchedule">[docs]</a>    <span class="k">def</span> <span class="nf">displaySchedule</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;displaySchedule</span>
+<span class="sd">        Description</span>
+<span class="sd">        -----------</span>
+<span class="sd">        This method display information about schedule.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">dates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduled_dates</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dates</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;At valuation date there is still </span><span class="si">{0:.2f}</span><span class="s2"> of the year.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">year_fractions</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">year_fractions</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">year_fractions</span>
+            <span class="n">df_schedule</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">year_fractions</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span>
+                                       <span class="s1">&#39;Calendar_Grid&#39;</span><span class="p">,</span> <span class="s2">&quot;Year_Fraction&quot;</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">df_schedule</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Krzysztof Bienias.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
