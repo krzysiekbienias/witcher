@@ -76,6 +76,7 @@ if __name__=="__main__":
                                     simulation_schema="Exact_Solution")
         print("lala")
         print(':dupa')
+        print("kurwa!!!!")
         
 
         
