@@ -20,10 +20,9 @@ To run the code smoothly a User must first import QuantLib library. From QuantLi
 
 ## Documentation
 Detailed documentation might be find under following location:
-
+https://raw.githack.com/krzysiekbienias/witcher/master/docs/build/html/py-modindex.html
 
 https://raw.githack.com/krzysiekbienias/witcher/master/docs/build/html/index.html
-https://raw.githack.com/krzysiekbienias/witcher/master/docs/build/html/modindex.html
 
 ## Structure
 ```
