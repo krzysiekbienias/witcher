@@ -16,7 +16,7 @@ class IOTools:
                       sep=",",
                       names=None)->pd.DataFrame:
         """csv2DataFrame
-        This method reads comma seperate file into a DataFrame.
+        This method reads comma separate file into a DataFrame.
 
         Parameters
         ----------
@@ -157,7 +157,7 @@ class XlWingsTools:
             sheet name
         ax_obj : T
             _description_
-        anchore : str
+        anchor : str
             location of graph. It must be in format that corresponds to Excel cell. For instance 'A1'
         title : str, optional
             title of the graph, by default None
@@ -187,35 +187,34 @@ class XlWingsTools:
 
         Parameters
         ----------
-        sheet : _type_
-            _description_
+        sheet : 
+            
         location : str
-            _description_
+            cell address
         text : str
-            _description_
+            string to put
         rgb_code : tuple, optional
-            _description_, by default (0,0,39)
+            color definition, by default (0,0,39)
         """
         sheet[location].value=text
         sheet[location].font.bold=True
         sheet[location].find.size=24
         sheet[location].font.color=rgb_code
 
-    def clearAllSpreadSheet(file_to_clear:str):
+    def clearAllSpreadSheet(file_to_clear:str)->None:
         """clearAllSpreadSheet
         Description
         -----------
-        This method removes all spread sheets appart from one
+        This method removes all spread sheets apart from one
 
         Parameters
         ----------
         file_to_clear : str
-            _description_
+            Name of the file to be cleared.
 
         Returns
         -------
-        _type_
-            _description_
+        None
         """
         wb=xw.Book(file_to_clear)
         while wb.sheets.count>1:
