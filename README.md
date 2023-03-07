@@ -14,8 +14,16 @@ The package aim is to provide a comprehensive set of tools to help in different 
 
 ## Instalation
 To use the package you need to clone the repository first. The package itself has a numerous dependencies and it is better to isolate environment for this module. To run it properly ple
+
 ## Dependecies
 To run the code smoothly a User must first import QuantLib library. From QuantLib we laverage only calendar schedule and lifecycle of trades. All analytical formula are implemented from scratch.
+
+## Documentation
+Detailed documentation might be find under following location:
+
+
+https://raw.githack.com/krzysiekbienias/witcher/master/docs/build/html/index.html
+https://raw.githack.com/krzysiekbienias/witcher/master/docs/build/html/modindex.html
 
 ## Structure
 ```
