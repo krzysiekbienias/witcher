@@ -1,19 +1,30 @@
 from witcher.python_tool_kit.IOToolKit import XlWingsTools
 from witcher.black_scholes_framework.pricing_environment.PricingEnvironment import PricingEnvironment
-from witcher.black_scholes_framework.pricing.AnalyticalPrice import EuropeanStyleOption,MarketEnvironment
+from witcher.black_scholes_framework.pricing.AnalyticalPrice import EuropeanOptionHandler,MarketEnvironment
 from witcher.black_scholes_framework.pricing.AnalyticalPrice import BlackScholesAnalyticalPrice
 from witcher.simulation_models.SimulationEnvironment import SimulationEnvironment
 from witcher.simulation_models.SimulationModels import GeometricBrownianMotion
+from witcher.flask_app import app
 
 
 from  datetime import datetime
 import pandas as pd
 import os
+from flask import Flask
+
+from flask_restful import Api
+from flask_restful import Resource
+from http import HTTPStatus
 
 
 if __name__=="__main__":
-    _pricing_module=False
-    _simulation_module=True
+    
+
+    
+
+
+    _pricing_module=True
+    _simulation_module=False
 
     # -----------------------
     # Region: Input Output location
@@ -35,14 +46,15 @@ if __name__=="__main__":
                                         calendar='USA')
         pricing_environment.displaySchedule()
         print("-.-"*20)
-        european_option=EuropeanStyleOption(option_type="PUT",
-                                underlier_price=69,
-                                option_strike=67)
+        european_option=EuropeanOptionHandler(option_type="PUT",
+                                            
+                                            option_strike=67)
         print(european_option)
         print("-.-"*20)
 
         print("-.-"*20)
-        market_env=MarketEnvironment(risk_free_rate=0.06,
+        market_env=MarketEnvironment(underlier_price=69,
+                                    risk_free_rate=0.06,
                                     implied_volatility=0.25)
         print(market_env)
         print("-.-"*20)
@@ -77,11 +89,3 @@ if __name__=="__main__":
         print("lala")
         print(':dupa')
         print("kurwa!!!!")
-        
-
-        
-        
-        
-
-
-print ("The END")

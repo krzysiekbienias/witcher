@@ -5,6 +5,7 @@ import matplotlib.pylab as plt
 from collections.abc import Iterable,Sequence
 import os
 import xlwings as xw
+from typing import TypeVar, Iterable, Tuple, Dict, List, Generic, NewType
 
 class IOTools:
     @staticmethod
@@ -104,26 +105,104 @@ class IOTools:
 
 class XlWingsTools:
     @staticmethod
-    def createNewExcelFile(save_path):
+    def createNewExcelFile(save_path:str,
+                           sheet_names:List[str]=None):
+        """createNewExcelFile
+        Description
+        -----------
+        This method creates excel file with specific tabs.
+
+        Parameters
+        ----------
+        save_path : str
+            _description_
+        sheet_names : List[str]
+            _description_
+
+        Returns
+        -------
+        _type_
+            _description_
+        """
         if os.path.isfile(save_path):
-            return None
+
+            return xw.Book(save_path)
         else:
-            app=xw.App(visible=True, add_book=False)
-            wb = app.books.add()
-            wb.save(save_path)
-            
-            print(f"New file {save_path} has been created.")
+            if sheet_names is None:
+                app=xw.App(visible=True, add_book=True)
+                wb = app.books.add()
+                wb.save(save_path)
+                print(f"New file {save_path} has been created.")
+                return wb
+            else:
+                app=xw.App(visible=True, add_book=True)
+                wb=xw.Book()
+                for sheet_name in sheet_names:
+                    wb.sheets.add(sheet_name)
+
+                wb.save(save_path)
+                print(f"New file {save_path} has been created.")
+                return wb
+
+
+    def clearAllSpreadSheet(file_to_clear:str)->None:
+        """clearAllSpreadSheet
+        Description
+        -----------
+        This method removes content from each sheet.
+
+        Parameters
+        ----------
+        file_to_clear : str
+            Name of the file to be cleared.
+
+        Returns
+        -------
+        None
+        """
+        wb=xw.Book(file_to_clear)
+        workbook_sheets=wb.sheets
+        for workbook_sheet in workbook_sheets:
+            workbook_sheet.clear()
+
+        
 
 
     @staticmethod
-    def insertDF(df:pd.DataFrame,
-                 sheet:xw.sheets,
-                 anchore:str,
+    def insertDF(xw_book:xw.Book,
+                 df:pd.DataFrame,
+                 sheet_name:str="Sheet1",
+                 anchor:str="A1",
                  index_flag:bool=True)->None:
+        """insertDF
+        Description
+        -----------
 
-        sheet.range(anchore).options(pd.DataFrame,
-                                     index=index_flag,
-                                     expand='table').value=df
+
+        Parameters
+        ----------
+        xw_book : xw.Book
+            _description_
+        df : pd.DataFrame
+            _description_
+        sheet_name : str, optional
+            _description_, by default "Sheet1"
+        anchor : str, optional
+            _description_, by default "A1"
+        index_flag : bool, optional
+            _description_, by default True
+        """
+        if sheet_name in  xw_book.sheet_names:
+            xw_sheet= xw_book.sheets[sheet_name]
+            xw_sheet.range(anchor).options(pd.DataFrame,
+                                        index=index_flag,
+                                        expand='table').value=df
+        else:
+            xw_book.sheets.add(sheet_name)
+            xw_sheet.range(anchor).options(pd.DataFrame,
+                                        index=index_flag,
+                                        expand='table').value=df
+
         
     @staticmethod
     def insertPlotFromFig(sheet,
@@ -142,7 +221,7 @@ class XlWingsTools:
     @staticmethod
     def insertPlotFromDF(sheet:xw.sheets,
                          ax_obj:plt.axes,
-                         anchore:str,
+                         anchor:str,
                          title:str=None,
                          height=200,
                          width=300)->None:
@@ -169,8 +248,8 @@ class XlWingsTools:
 
         fig=ax_obj.get_figure()
         sheet.pictures.add(fig,
-                           left=sheet.range(anchore).left,
-                           top=sheet.range(anchore).left,
+                           left=sheet.range(anchor).left,
+                           top=sheet.range(anchor).left,
                             height=height,
                             width=width)
 
@@ -201,24 +280,4 @@ class XlWingsTools:
         sheet[location].find.size=24
         sheet[location].font.color=rgb_code
 
-    def clearAllSpreadSheet(file_to_clear:str)->None:
-        """clearAllSpreadSheet
-        Description
-        -----------
-        This method removes all spread sheets apart from one
-
-        Parameters
-        ----------
-        file_to_clear : str
-            Name of the file to be cleared.
-
-        Returns
-        -------
-        None
-        """
-        wb=xw.Book(file_to_clear)
-        while wb.sheets.count>1:
-            for sheet in wb.sheets:
-                if wb.sheets.count==1:
-                    return None
-                sheet.delete()
+    

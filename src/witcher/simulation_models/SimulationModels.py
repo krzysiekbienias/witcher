@@ -12,7 +12,7 @@ from datetime import datetime
 
 
 from witcher.simulation_models.SimulationEnvironment import SimulationEnvironment
-from witcher.black_scholes_framework.pricing.AnalyticalPrice import EuropeanStyleOption, MarketEnvironment
+from witcher.black_scholes_framework.pricing.AnalyticalPrice import EuropeanOptionHandler, MarketEnvironment
 
 from typing import TypeVar, Iterable, Tuple, Dict, List
 
