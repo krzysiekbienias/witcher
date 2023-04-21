@@ -105,36 +105,36 @@ class QuantLibToolKit:
 
 
     @staticmethod
-    def defineSchedule(effective_day:DT,
-                       termination_date:DT,
-                       freq_period_:str="monthly",
-                       calendar_:str="theUK")->QL:
+    def defineSchedule(effective_day:str,
+                       termination_date:str,
+                       freq_period:str="monthly",
+                       calendar:str="theUK")->ql.Schedule:
         """defineSchedule
         Description
         -----------
-
-
+        Simpler version of defining schedule object. Only required parameters
+        
         Parameters
         ----------
-        effective_day : DT
+        effective_day : str
             _description_
-        termination_date : DT
+        termination_date : str
             _description_
-        freq_period_ : str, optional
+        freq_period : str, optional
             _description_, by default "monthly"
-        calendar_ : str, optional
+        calendar : str, optional
             _description_, by default "theUK"
 
         Returns
         -------
-        QL
+        ql.Schedule
             _description_
         """
 
         return ql.MakeSchedule(effectiveDate=QuantLibToolKit.string_2qlDate(effective_day),
                         terminationDate=QuantLibToolKit.string_2qlDate(termination_date),
-                        frequency=QuantLibToolKit.setFrequency(freq_period_),
-                        calendar=QuantLibToolKit.setCalendar(calendar_))
+                        frequency=QuantLibToolKit.setFrequency(freq_period),
+                        calendar=QuantLibToolKit.setCalendar(calendar))
 
     @staticmethod
     def setFrequency(freq_period:str)->int:

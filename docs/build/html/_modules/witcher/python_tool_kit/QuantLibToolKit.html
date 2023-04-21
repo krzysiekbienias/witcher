@@ -90,16 +90,16 @@
     <span class="n">_date_generation_rules</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Backward&quot;</span><span class="p">:</span><span class="n">ql</span><span class="o">.</span><span class="n">DateGeneration</span><span class="o">.</span><span class="n">Backward</span><span class="p">,</span>
                       <span class="s2">&quot;Forward&quot;</span><span class="p">:</span><span class="n">ql</span><span class="o">.</span><span class="n">DateGeneration</span><span class="o">.</span><span class="n">Forward</span><span class="p">}</span>
 
-<div class="viewcode-block" id="QuantLibToolKit.convertDate2QlDate"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.convertDate2QlDate">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">convertDate2QlDate</span><span class="p">(</span><span class="n">date</span><span class="p">:</span><span class="n">DT</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">QL</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;convertDate2QlDate</span>
+<div class="viewcode-block" id="QuantLibToolKit.string_2qlDate"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.string_2qlDate">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">string_2qlDate</span><span class="p">(</span><span class="n">date</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">QL</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;string_2qlDate</span>
 <span class="sd">        Description</span>
 <span class="sd">        -----------</span>
-<span class="sd">        function converts datetime date object and convert to equivalent quantlib Object</span>
-
+<span class="sd">        function converts string date representation and convert to equivalent quantlib object.</span>
+<span class="sd">        Date must be in form Y-m-d.</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        date : DT</span>
+<span class="sd">        date : str</span>
 <span class="sd">            date time object that gonna be converted. Must be passed as year, month, day</span>
 
 <span class="sd">        Returns</span>
@@ -108,8 +108,8 @@
 <span class="sd">            date as a QuantLib object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-
-        <span class="n">ql_date</span> <span class="o">=</span> <span class="n">ql</span><span class="o">.</span><span class="n">Date</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
+        <span class="n">dt_date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">date</span><span class="p">,</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">ql_date</span> <span class="o">=</span> <span class="n">ql</span><span class="o">.</span><span class="n">Date</span><span class="p">(</span><span class="n">dt_date</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="n">dt_date</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">dt_date</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ql_date</span></div>
 
 
@@ -174,36 +174,36 @@
 
 
 <div class="viewcode-block" id="QuantLibToolKit.defineSchedule"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.defineSchedule">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">defineSchedule</span><span class="p">(</span><span class="n">effective_day</span><span class="p">:</span><span class="n">DT</span><span class="p">,</span>
-                       <span class="n">termination_date</span><span class="p">:</span><span class="n">DT</span><span class="p">,</span>
-                       <span class="n">freq_period_</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;monthly&quot;</span><span class="p">,</span>
-                       <span class="n">calendar_</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;theUK&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">QL</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">defineSchedule</span><span class="p">(</span><span class="n">effective_day</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
+                       <span class="n">termination_date</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
+                       <span class="n">freq_period</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;monthly&quot;</span><span class="p">,</span>
+                       <span class="n">calendar</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;theUK&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">ql</span><span class="o">.</span><span class="n">Schedule</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;defineSchedule</span>
 <span class="sd">        Description</span>
 <span class="sd">        -----------</span>
-
-
+<span class="sd">        Simpler version of defining schedule object. Only required parameters</span>
+<span class="sd">        </span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        effective_day : DT</span>
+<span class="sd">        effective_day : str</span>
 <span class="sd">            _description_</span>
-<span class="sd">        termination_date : DT</span>
+<span class="sd">        termination_date : str</span>
 <span class="sd">            _description_</span>
-<span class="sd">        freq_period_ : str, optional</span>
+<span class="sd">        freq_period : str, optional</span>
 <span class="sd">            _description_, by default &quot;monthly&quot;</span>
-<span class="sd">        calendar_ : str, optional</span>
+<span class="sd">        calendar : str, optional</span>
 <span class="sd">            _description_, by default &quot;theUK&quot;</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        QL</span>
+<span class="sd">        ql.Schedule</span>
 <span class="sd">            _description_</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="n">ql</span><span class="o">.</span><span class="n">MakeSchedule</span><span class="p">(</span><span class="n">effectiveDate</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">convertDate2QlDate</span><span class="p">(</span><span class="n">effective_day</span><span class="p">),</span>
-                        <span class="n">terminationDate</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">convertDate2QlDate</span><span class="p">(</span><span class="n">termination_date</span><span class="p">),</span>
-                        <span class="n">frequency</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">setFrequency</span><span class="p">(</span><span class="n">freq_period_</span><span class="p">),</span>
-                        <span class="n">calendar</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">setCalendar</span><span class="p">(</span><span class="n">calendar_</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="n">ql</span><span class="o">.</span><span class="n">MakeSchedule</span><span class="p">(</span><span class="n">effectiveDate</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">string_2qlDate</span><span class="p">(</span><span class="n">effective_day</span><span class="p">),</span>
+                        <span class="n">terminationDate</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">string_2qlDate</span><span class="p">(</span><span class="n">termination_date</span><span class="p">),</span>
+                        <span class="n">frequency</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">setFrequency</span><span class="p">(</span><span class="n">freq_period</span><span class="p">),</span>
+                        <span class="n">calendar</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">setCalendar</span><span class="p">(</span><span class="n">calendar</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="QuantLibToolKit.setFrequency"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.setFrequency">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">setFrequency</span><span class="p">(</span><span class="n">freq_period</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>

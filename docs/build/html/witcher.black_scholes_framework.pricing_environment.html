@@ -49,8 +49,8 @@
 <li><a class="reference internal" href="#witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment"><code class="docutils literal notranslate"><span class="pre">PricingEnvironment</span></code></a><ul>
 <li><a class="reference internal" href="#witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment.displaySchedule"><code class="docutils literal notranslate"><span class="pre">PricingEnvironment.displaySchedule()</span></code></a></li>
 <li><a class="reference internal" href="#witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment.getYearFractionSequence"><code class="docutils literal notranslate"><span class="pre">PricingEnvironment.getYearFractionSequence()</span></code></a></li>
-<li><a class="reference internal" href="#witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment.setSchedule"><code class="docutils literal notranslate"><span class="pre">PricingEnvironment.setSchedule()</span></code></a></li>
 <li><a class="reference internal" href="#witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment.setYearFractionConvention"><code class="docutils literal notranslate"><span class="pre">PricingEnvironment.setYearFractionConvention()</span></code></a></li>
+<li><a class="reference internal" href="#witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment.set_schedule"><code class="docutils literal notranslate"><span class="pre">PricingEnvironment.set_schedule()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -93,7 +93,7 @@
 <span id="witcher-black-scholes-framework-pricing-environment-pricingenvironment-module"></span><h2>witcher.black_scholes_framework.pricing_environment.PricingEnvironment module<a class="headerlink" href="#module-witcher.black_scholes_framework.pricing_environment.PricingEnvironment" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">witcher.black_scholes_framework.pricing_environment.PricingEnvironment.</span></span><span class="sig-name descname"><span class="pre">PricingEnvironment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valuation_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">termination_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calendar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'theUK'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_fraction_convention</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Actual365'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Monthly'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/witcher/black_scholes_framework/pricing_environment/PricingEnvironment.html#PricingEnvironment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">witcher.black_scholes_framework.pricing_environment.PricingEnvironment.</span></span><span class="sig-name descname"><span class="pre">PricingEnvironment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valuation_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">termination_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calendar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'theUK'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_fraction_convention</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Actual365'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Monthly'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/witcher/black_scholes_framework/pricing_environment/PricingEnvironment.html#PricingEnvironment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment.displaySchedule">
@@ -122,23 +122,43 @@ For given sequence of dates returns arr of list year fractions with edges T_i-1 
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment.setSchedule">
-<span class="sig-name descname"><span class="pre">setSchedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">effectiveDate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">terminationDate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tenor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Period</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calendar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Calendar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convention</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">termination_date_convention</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DateGeneration</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">endOfMonth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Schedule</span></span></span><a class="reference internal" href="_modules/witcher/black_scholes_framework/pricing_environment/PricingEnvironment.html#PricingEnvironment.setSchedule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment.setSchedule" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment.setYearFractionConvention">
+<span class="sig-name descname"><span class="pre">setYearFractionConvention</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year_fraction_conv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Actual365'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QL</span></span></span><a class="reference internal" href="_modules/witcher/black_scholes_framework/pricing_environment/PricingEnvironment.html#PricingEnvironment.setYearFractionConvention"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment.setYearFractionConvention" title="Permalink to this definition"></a></dt>
 <dd><section id="id1">
 <h3>Description<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p>Function defines how we will calculate year fraction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param year_fraction_conv<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Available alternatives: Actual360, Actual365, ActualActual, Thirty360, Business252</p>
+</dd>
+<dt class="field-even">type year_fraction_conv<span class="colon">:</span></dt>
+<dd class="field-even"><p>string</p>
+</dd>
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ql.FractionConvention</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment.set_schedule">
+<span class="sig-name descname"><span class="pre">set_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">effectiveDate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">terminationDate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tenor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Period</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calendar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Calendar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convention</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">termination_date_convention</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DateGeneration</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">endOfMonth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Schedule</span></span></span><a class="reference internal" href="_modules/witcher/black_scholes_framework/pricing_environment/PricingEnvironment.html#PricingEnvironment.set_schedule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment.set_schedule" title="Permalink to this definition"></a></dt>
+<dd><section id="id2">
+<h3>Description<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <p>Method creates the schedule that handle with life cycle of a trade. The heart of the class.</p>
 <dl class="field-list simple">
 <dt class="field-odd">param effectiveDate<span class="colon">:</span></dt>
 <dd class="field-odd"><p>_description_</p>
 </dd>
 <dt class="field-even">type effectiveDate<span class="colon">:</span></dt>
-<dd class="field-even"><p>DT</p>
+<dd class="field-even"><p>ql.Date</p>
 </dd>
 <dt class="field-odd">param terminationDate<span class="colon">:</span></dt>
 <dd class="field-odd"><p>_description_</p>
 </dd>
 <dt class="field-even">type terminationDate<span class="colon">:</span></dt>
-<dd class="field-even"><p>DT</p>
+<dd class="field-even"><p>ql.Date</p>
 </dd>
 <dt class="field-odd">param tenor<span class="colon">:</span></dt>
 <dd class="field-odd"><p>_description_</p>
@@ -176,28 +196,11 @@ For given sequence of dates returns arr of list year fractions with edges T_i-1 
 <dt class="field-even">type endOfMonth<span class="colon">:</span></dt>
 <dd class="field-even"><p>bool, optional</p>
 </dd>
-<dt class="field-odd">rtype<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ql.Schedule</p>
+<dt class="field-odd">returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_description_</p>
 </dd>
-</dl>
-</section>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment.setYearFractionConvention">
-<span class="sig-name descname"><span class="pre">setYearFractionConvention</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year_fraction_conv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Actual365'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QL</span></span></span><a class="reference internal" href="_modules/witcher/black_scholes_framework/pricing_environment/PricingEnvironment.html#PricingEnvironment.setYearFractionConvention"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#witcher.black_scholes_framework.pricing_environment.PricingEnvironment.PricingEnvironment.setYearFractionConvention" title="Permalink to this definition"></a></dt>
-<dd><section id="id2">
-<h3>Description<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
-<p>Function defines how we will calculate year fraction.</p>
-<dl class="field-list simple">
-<dt class="field-odd">param year_fraction_conv<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Available alternatives: Actual360, Actual365, ActualActual, Thirty360, Business252</p>
-</dd>
-<dt class="field-even">type year_fraction_conv<span class="colon">:</span></dt>
-<dd class="field-even"><p>string</p>
-</dd>
-<dt class="field-odd">rtype<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ql.FractionConvention</p>
+<dt class="field-even">rtype<span class="colon">:</span></dt>
+<dd class="field-even"><p>ql.Schedule</p>
 </dd>
 </dl>
 </section>

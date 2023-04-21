@@ -58,7 +58,6 @@
 <li><a class="reference internal" href="#witcher.python_tool_kit.IOToolKit.XlWingsTools.createNewExcelFile"><code class="docutils literal notranslate"><span class="pre">XlWingsTools.createNewExcelFile()</span></code></a></li>
 <li><a class="reference internal" href="#witcher.python_tool_kit.IOToolKit.XlWingsTools.insertDF"><code class="docutils literal notranslate"><span class="pre">XlWingsTools.insertDF()</span></code></a></li>
 <li><a class="reference internal" href="#witcher.python_tool_kit.IOToolKit.XlWingsTools.insertHeading"><code class="docutils literal notranslate"><span class="pre">XlWingsTools.insertHeading()</span></code></a></li>
-<li><a class="reference internal" href="#witcher.python_tool_kit.IOToolKit.XlWingsTools.insertPlotFromDF"><code class="docutils literal notranslate"><span class="pre">XlWingsTools.insertPlotFromDF()</span></code></a></li>
 <li><a class="reference internal" href="#witcher.python_tool_kit.IOToolKit.XlWingsTools.insertPlotFromFig"><code class="docutils literal notranslate"><span class="pre">XlWingsTools.insertPlotFromFig()</span></code></a></li>
 </ul>
 </li>
@@ -75,12 +74,12 @@
 </li>
 <li><a class="reference internal" href="#module-witcher.python_tool_kit.QuantLibToolKit">witcher.python_tool_kit.QuantLibToolKit module</a><ul>
 <li><a class="reference internal" href="#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit"><code class="docutils literal notranslate"><span class="pre">QuantLibToolKit</span></code></a><ul>
-<li><a class="reference internal" href="#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.convertDate2QlDate"><code class="docutils literal notranslate"><span class="pre">QuantLibToolKit.convertDate2QlDate()</span></code></a></li>
 <li><a class="reference internal" href="#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.defineSchedule"><code class="docutils literal notranslate"><span class="pre">QuantLibToolKit.defineSchedule()</span></code></a></li>
 <li><a class="reference internal" href="#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.setCalendar"><code class="docutils literal notranslate"><span class="pre">QuantLibToolKit.setCalendar()</span></code></a></li>
 <li><a class="reference internal" href="#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.setDateCorrectionsSchema"><code class="docutils literal notranslate"><span class="pre">QuantLibToolKit.setDateCorrectionsSchema()</span></code></a></li>
 <li><a class="reference internal" href="#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.setFrequency"><code class="docutils literal notranslate"><span class="pre">QuantLibToolKit.setFrequency()</span></code></a></li>
 <li><a class="reference internal" href="#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.setRuleOfDateGeneration"><code class="docutils literal notranslate"><span class="pre">QuantLibToolKit.setRuleOfDateGeneration()</span></code></a></li>
+<li><a class="reference internal" href="#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.string_2qlDate"><code class="docutils literal notranslate"><span class="pre">QuantLibToolKit.string_2qlDate()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -157,7 +156,7 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="witcher.python_tool_kit.IOToolKit.IOTools.csv2DataFrame">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">csv2DataFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'infer'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">','</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/witcher/python_tool_kit/IOToolKit.html#IOTools.csv2DataFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#witcher.python_tool_kit.IOToolKit.IOTools.csv2DataFrame" title="Permalink to this definition"></a></dt>
-<dd><p>This method reads comma seperate file into a DataFrame.</p>
+<dd><p>This method reads comma separate file into a DataFrame.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -220,16 +219,42 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="witcher.python_tool_kit.IOToolKit.XlWingsTools.clearAllSpreadSheet">
-<span class="sig-name descname"><span class="pre">clearAllSpreadSheet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/witcher/python_tool_kit/IOToolKit.html#XlWingsTools.clearAllSpreadSheet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#witcher.python_tool_kit.IOToolKit.XlWingsTools.clearAllSpreadSheet" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">clearAllSpreadSheet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/witcher/python_tool_kit/IOToolKit.html#XlWingsTools.clearAllSpreadSheet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#witcher.python_tool_kit.IOToolKit.XlWingsTools.clearAllSpreadSheet" title="Permalink to this definition"></a></dt>
 <dd><section id="id2">
 <h3>Description<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
-<p>This method removes all spread sheets appart from one</p>
+<p>This method removes content from each sheet.</p>
 <dl class="field-list simple">
 <dt class="field-odd">param file_to_clear<span class="colon">:</span></dt>
-<dd class="field-odd"><p>_description_</p>
+<dd class="field-odd"><p>Name of the file to be cleared.</p>
 </dd>
 <dt class="field-even">type file_to_clear<span class="colon">:</span></dt>
 <dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="witcher.python_tool_kit.IOToolKit.XlWingsTools.createNewExcelFile">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">createNewExcelFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/witcher/python_tool_kit/IOToolKit.html#XlWingsTools.createNewExcelFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#witcher.python_tool_kit.IOToolKit.XlWingsTools.createNewExcelFile" title="Permalink to this definition"></a></dt>
+<dd><section id="id3">
+<h3>Description<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p>This method creates excel file with specific tabs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param save_path<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_description_</p>
+</dd>
+<dt class="field-even">type save_path<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">param sheet_names<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_description_</p>
+</dd>
+<dt class="field-even">type sheet_names<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[str]</p>
 </dd>
 <dt class="field-odd">returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>_description_</p>
@@ -242,92 +267,71 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="witcher.python_tool_kit.IOToolKit.XlWingsTools.createNewExcelFile">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">createNewExcelFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/witcher/python_tool_kit/IOToolKit.html#XlWingsTools.createNewExcelFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#witcher.python_tool_kit.IOToolKit.XlWingsTools.createNewExcelFile" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="witcher.python_tool_kit.IOToolKit.XlWingsTools.insertDF">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">insertDF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df:</span> <span class="pre">~pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet:</span> <span class="pre">Sheets([&lt;Sheet</span> <span class="pre">[risk_factors.xlsx]Sheet1&gt;])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchore:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_flag:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/witcher/python_tool_kit/IOToolKit.html#XlWingsTools.insertDF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#witcher.python_tool_kit.IOToolKit.XlWingsTools.insertDF" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="witcher.python_tool_kit.IOToolKit.XlWingsTools.insertHeading">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">insertHeading</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sheet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rgb_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">39)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/witcher/python_tool_kit/IOToolKit.html#XlWingsTools.insertHeading"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#witcher.python_tool_kit.IOToolKit.XlWingsTools.insertHeading" title="Permalink to this definition"></a></dt>
-<dd><section id="id3">
-<h3>Description<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
-<p>This method insert nice heading for chosen element, graph, table into chosen data frame</p>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">insertDF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xw_book</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Book</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Sheet1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'A1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_flag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/witcher/python_tool_kit/IOToolKit.html#XlWingsTools.insertDF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#witcher.python_tool_kit.IOToolKit.XlWingsTools.insertDF" title="Permalink to this definition"></a></dt>
+<dd><section id="id4">
+<h3>Description<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <dl class="field-list simple">
-<dt class="field-odd">param sheet<span class="colon">:</span></dt>
+<dt class="field-odd">param xw_book<span class="colon">:</span></dt>
 <dd class="field-odd"><p>_description_</p>
 </dd>
-<dt class="field-even">type sheet<span class="colon">:</span></dt>
-<dd class="field-even"><p>_type_</p>
+<dt class="field-even">type xw_book<span class="colon">:</span></dt>
+<dd class="field-even"><p>xw.Book</p>
 </dd>
-<dt class="field-odd">param location<span class="colon">:</span></dt>
+<dt class="field-odd">param df<span class="colon">:</span></dt>
 <dd class="field-odd"><p>_description_</p>
 </dd>
-<dt class="field-even">type location<span class="colon">:</span></dt>
-<dd class="field-even"><p>str</p>
+<dt class="field-even">type df<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
 </dd>
-<dt class="field-odd">param text<span class="colon">:</span></dt>
-<dd class="field-odd"><p>_description_</p>
+<dt class="field-odd">param sheet_name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_description_, by default “Sheet1”</p>
 </dd>
-<dt class="field-even">type text<span class="colon">:</span></dt>
-<dd class="field-even"><p>str</p>
+<dt class="field-even">type sheet_name<span class="colon">:</span></dt>
+<dd class="field-even"><p>str, optional</p>
 </dd>
-<dt class="field-odd">param rgb_code<span class="colon">:</span></dt>
-<dd class="field-odd"><p>_description_, by default (0,0,39)</p>
+<dt class="field-odd">param anchor<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_description_, by default “A1”</p>
 </dd>
-<dt class="field-even">type rgb_code<span class="colon">:</span></dt>
-<dd class="field-even"><p>tuple, optional</p>
+<dt class="field-even">type anchor<span class="colon">:</span></dt>
+<dd class="field-even"><p>str, optional</p>
+</dd>
+<dt class="field-odd">param index_flag<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_description_, by default True</p>
+</dd>
+<dt class="field-even">type index_flag<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool, optional</p>
 </dd>
 </dl>
 </section>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="witcher.python_tool_kit.IOToolKit.XlWingsTools.insertPlotFromDF">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">insertPlotFromDF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sheet:</span> <span class="pre">Sheets([&lt;Sheet</span> <span class="pre">[risk_factors.xlsx]Sheet1&gt;])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax_obj:</span> <span class="pre">~matplotlib.pyplot.axes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchore:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title:</span> <span class="pre">~typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height=200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width=300</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/witcher/python_tool_kit/IOToolKit.html#XlWingsTools.insertPlotFromDF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#witcher.python_tool_kit.IOToolKit.XlWingsTools.insertPlotFromDF" title="Permalink to this definition"></a></dt>
-<dd><section id="id4">
-<h3>Description<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
-<p>This method drops a plot from DataFrame object in chosen tab and cell.</p>
+<dt class="sig sig-object py" id="witcher.python_tool_kit.IOToolKit.XlWingsTools.insertHeading">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">insertHeading</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sheet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rgb_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">39)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/witcher/python_tool_kit/IOToolKit.html#XlWingsTools.insertHeading"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#witcher.python_tool_kit.IOToolKit.XlWingsTools.insertHeading" title="Permalink to this definition"></a></dt>
+<dd><section id="id5">
+<h3>Description<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<p>This method insert nice heading for chosen element, graph, table into chosen data frame</p>
 <dl class="field-list simple">
 <dt class="field-odd">param sheet<span class="colon">:</span></dt>
-<dd class="field-odd"><p>sheet name</p>
+<dd class="field-odd"><p></p></dd>
+<dt class="field-even">param location<span class="colon">:</span></dt>
+<dd class="field-even"><p>cell address</p>
 </dd>
-<dt class="field-even">type sheet<span class="colon">:</span></dt>
-<dd class="field-even"><p>T</p>
+<dt class="field-odd">type location<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
 </dd>
-<dt class="field-odd">param ax_obj<span class="colon">:</span></dt>
-<dd class="field-odd"><p>_description_</p>
+<dt class="field-even">param text<span class="colon">:</span></dt>
+<dd class="field-even"><p>string to put</p>
 </dd>
-<dt class="field-even">type ax_obj<span class="colon">:</span></dt>
-<dd class="field-even"><p>T</p>
+<dt class="field-odd">type text<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
 </dd>
-<dt class="field-odd">param anchore<span class="colon">:</span></dt>
-<dd class="field-odd"><p>location of graph. It must be in format that corresponds to Excel cell. For instance ‘A1’</p>
+<dt class="field-even">param rgb_code<span class="colon">:</span></dt>
+<dd class="field-even"><p>color definition, by default (0,0,39)</p>
 </dd>
-<dt class="field-even">type anchore<span class="colon">:</span></dt>
-<dd class="field-even"><p>str</p>
-</dd>
-<dt class="field-odd">param title<span class="colon">:</span></dt>
-<dd class="field-odd"><p>title of the graph, by default None</p>
-</dd>
-<dt class="field-even">type title<span class="colon">:</span></dt>
-<dd class="field-even"><p>str, optional</p>
-</dd>
-<dt class="field-odd">param height<span class="colon">:</span></dt>
-<dd class="field-odd"><p>width of the graph, by default 200</p>
-</dd>
-<dt class="field-even">type height<span class="colon">:</span></dt>
-<dd class="field-even"><p>int, optional</p>
-</dd>
-<dt class="field-odd">param width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>, by default 300</p>
-</dd>
-<dt class="field-even">type width<span class="colon">:</span></dt>
-<dd class="field-even"><p>int, optional</p>
+<dt class="field-odd">type rgb_code<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple, optional</p>
 </dd>
 </dl>
 </section>
@@ -401,63 +405,41 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">witcher.python_tool_kit.QuantLibToolKit.</span></span><span class="sig-name descname"><span class="pre">QuantLibToolKit</span></span><a class="reference internal" href="_modules/witcher/python_tool_kit/QuantLibToolKit.html#QuantLibToolKit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.convertDate2QlDate">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">convertDate2QlDate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DT</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QL</span></span></span><a class="reference internal" href="_modules/witcher/python_tool_kit/QuantLibToolKit.html#QuantLibToolKit.convertDate2QlDate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.convertDate2QlDate" title="Permalink to this definition"></a></dt>
-<dd><section id="id5">
-<h3>Description<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
-<p>function converts datetime date object and convert to equivalent quantlib Object</p>
-<dl class="field-list simple">
-<dt class="field-odd">param date<span class="colon">:</span></dt>
-<dd class="field-odd"><p>date time object that gonna be converted. Must be passed as year, month, day</p>
-</dd>
-<dt class="field-even">type date<span class="colon">:</span></dt>
-<dd class="field-even"><p>DT</p>
-</dd>
-<dt class="field-odd">returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>date as a QuantLib object</p>
-</dd>
-<dt class="field-even">rtype<span class="colon">:</span></dt>
-<dd class="field-even"><p>QL</p>
-</dd>
-</dl>
-</section>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.defineSchedule">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">defineSchedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">effective_day</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">termination_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_period_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'monthly'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calendar_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'theUK'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QL</span></span></span><a class="reference internal" href="_modules/witcher/python_tool_kit/QuantLibToolKit.html#QuantLibToolKit.defineSchedule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.defineSchedule" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">defineSchedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">effective_day</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">termination_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_period</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'monthly'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calendar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'theUK'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Schedule</span></span></span><a class="reference internal" href="_modules/witcher/python_tool_kit/QuantLibToolKit.html#QuantLibToolKit.defineSchedule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.defineSchedule" title="Permalink to this definition"></a></dt>
 <dd><section id="id6">
 <h3>Description<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<p>Simpler version of defining schedule object. Only required parameters</p>
 <dl class="field-list simple">
 <dt class="field-odd">param effective_day<span class="colon">:</span></dt>
 <dd class="field-odd"><p>_description_</p>
 </dd>
 <dt class="field-even">type effective_day<span class="colon">:</span></dt>
-<dd class="field-even"><p>DT</p>
+<dd class="field-even"><p>str</p>
 </dd>
 <dt class="field-odd">param termination_date<span class="colon">:</span></dt>
 <dd class="field-odd"><p>_description_</p>
 </dd>
 <dt class="field-even">type termination_date<span class="colon">:</span></dt>
-<dd class="field-even"><p>DT</p>
+<dd class="field-even"><p>str</p>
 </dd>
-<dt class="field-odd">param <a href="#id10"><span class="problematic" id="id11">freq_period_</span></a><span class="colon">:</span></dt>
+<dt class="field-odd">param freq_period<span class="colon">:</span></dt>
 <dd class="field-odd"><p>_description_, by default “monthly”</p>
 </dd>
-<dt class="field-even">type <a href="#id12"><span class="problematic" id="id13">freq_period_</span></a><span class="colon">:</span></dt>
+<dt class="field-even">type freq_period<span class="colon">:</span></dt>
 <dd class="field-even"><p>str, optional</p>
 </dd>
-<dt class="field-odd">param <a href="#id14"><span class="problematic" id="id15">calendar_</span></a><span class="colon">:</span></dt>
+<dt class="field-odd">param calendar<span class="colon">:</span></dt>
 <dd class="field-odd"><p>_description_, by default “theUK”</p>
 </dd>
-<dt class="field-even">type <a href="#id16"><span class="problematic" id="id17">calendar_</span></a><span class="colon">:</span></dt>
+<dt class="field-even">type calendar<span class="colon">:</span></dt>
 <dd class="field-even"><p>str, optional</p>
 </dd>
 <dt class="field-odd">returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>_description_</p>
 </dd>
 <dt class="field-even">rtype<span class="colon">:</span></dt>
-<dd class="field-even"><p>QL</p>
+<dd class="field-even"><p>ql.Schedule</p>
 </dd>
 </dl>
 </section>
@@ -540,6 +522,26 @@ This method defines business convention.</p>
 </dd>
 <dt class="field-even">rtype<span class="colon">:</span></dt>
 <dd class="field-even"><p>_type_</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.string_2qlDate">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">string_2qlDate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QL</span></span></span><a class="reference internal" href="_modules/witcher/python_tool_kit/QuantLibToolKit.html#QuantLibToolKit.string_2qlDate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.string_2qlDate" title="Permalink to this definition"></a></dt>
+<dd><section id="id10">
+<h3>Description<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
+<p>function converts string date representation and convert to equivalent quantlib object.
+Date must be in form Y-m-d.
+:param date: date time object that gonna be converted. Must be passed as year, month, day
+:type date: str</p>
+<dl class="field-list simple">
+<dt class="field-odd">returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>date as a QuantLib object</p>
+</dd>
+<dt class="field-even">rtype<span class="colon">:</span></dt>
+<dd class="field-even"><p>QL</p>
 </dd>
 </dl>
 </section>

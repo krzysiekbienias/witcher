@@ -86,7 +86,7 @@ class PricingEnvironment():
             year_fraction_conv=self._s_year_fraction_conv)
         ql_calendar = QuantLibToolKit.setCalendar(country=self._s_calendar)
 
-        ql_schedule = self.setSchedule(effectiveDate=ql_valuation_date,
+        ql_schedule = self.set_schedule(effectiveDate=ql_valuation_date,
                                        terminationDate=ql_termination_date,
                                        tenor=ql.Period(QuantLibToolKit.setFrequency(
                                            freq_period=self._s_frequency)),
@@ -141,25 +141,25 @@ class PricingEnvironment():
 
 # TODO implement simplare version of defining schedule
 
-    def setSchedule(self,
-                    effectiveDate: DT,
-                    terminationDate: DT,
+    def set_schedule(self,
+                    effectiveDate: ql.Date,
+                    terminationDate: ql.Date,
                     tenor: ql.Period,
                     calendar: ql.Calendar,
                     convention=QuantLibToolKit.setDateCorrectionsSchema(),
                     termination_date_convention=QuantLibToolKit.setDateCorrectionsSchema(),
                     rule: ql.DateGeneration = QuantLibToolKit.setRuleOfDateGeneration(),
                     endOfMonth: bool = False) -> ql.Schedule:
-        """setSchedule
+        """set_schedule
         Description
         -----------
         Method creates the schedule that handle with life cycle of a trade. The heart of the class.
 
         Parameters
         ----------
-        effectiveDate : DT
+        effectiveDate : ql.Date
             _description_
-        terminationDate : DT
+        terminationDate : ql.Date
             _description_
         tenor : ql.Period
             _description_
@@ -177,6 +177,7 @@ class PricingEnvironment():
         Returns
         -------
         ql.Schedule
+            _description_
         """
 
         return ql.Schedule(effectiveDate, terminationDate, tenor, calendar, convention, termination_date_convention, rule, endOfMonth)
