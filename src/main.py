@@ -38,7 +38,7 @@ if __name__=="__main__":
                                         frequency='once',
                                         year_fraction_convention='Actual365',
                                         calendar='USA')
-        pricing_environment.displaySchedule()
+        pricing_environment.display_schedule()
         print("-.-"*20)
         european_option=EuropeanOptionHandler(option_type="PUT",
                                               option_strike=67)
@@ -70,8 +70,8 @@ if __name__=="__main__":
         XlWingsTools.createNewExcelFile(os.path.join(io_path,output_name))
         XlWingsTools.clearAllSpreadSheet(os.path.join(io_path,output_name))
         print("File for presenting results has been prepared.")
-        gbm=GeometricBrownianMotion(start_simulation_date=datetime(2022, 4, 10),
-                                    end_simulation_date=datetime(2022, 7, 10),
+        gbm=GeometricBrownianMotion(start_simulation_date="2023-4-22",
+                                    end_simulation_date="2023-7-22",
                                     calendar="USA",
                                     year_fraction_convention="Actual365",
                                     frequency="daily",

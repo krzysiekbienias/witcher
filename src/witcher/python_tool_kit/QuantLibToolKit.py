@@ -45,8 +45,8 @@ class QuantLibToolKit:
 
 
     @staticmethod
-    def setCalendar(country:str="theUK")->QL:
-        """setCalendar
+    def set_calendar(country:str="theUK")->QL:
+        """set_calendar
         Description
         -----------
 
@@ -76,7 +76,7 @@ class QuantLibToolKit:
             return ql.Poland()
 
     @staticmethod
-    def setDateCorrectionsSchema(corrections_map:HM=_weekday_corrections,
+    def set_date_corrections_schema(corrections_map:HM=_weekday_corrections,
                               correction_rule:str="Following")->int:
         """setBusinessConvention
         Description
@@ -91,29 +91,34 @@ class QuantLibToolKit:
         return corrections_map[correction_rule]
 
     @staticmethod
-    def setRuleOfDateGeneration(_date_generation_rules=_date_generation_rules)->int:
-        """setRuleOfDateGeneration
+    def set_rule_of_date_generation(date_generation_rules:str="forward")->int:
+
+        """set_rule_of_date_generation
         Description
         -----------
+        A rule how to adjust non-working day on working day. We may move forward or backward
 
         Returns
         -------
         _type_
             _description_
         """
-        return ql.DateGeneration.Forward
+        if date_generation_rules=="forward":
+           return ql.DateGeneration.Forward
+        elif date_generation_rules=="backward":
+            return ql.DateGeneration.Backward
 
 
     @staticmethod
-    def defineSchedule(effective_day:str,
+    def define_schedule(effective_day:str,
                        termination_date:str,
                        freq_period:str="monthly",
                        calendar:str="theUK")->ql.Schedule:
-        """defineSchedule
+        """define_schedule
         Description
         -----------
         Simpler version of defining schedule object. Only required parameters
-        
+
         Parameters
         ----------
         effective_day : str
@@ -133,12 +138,12 @@ class QuantLibToolKit:
 
         return ql.MakeSchedule(effectiveDate=QuantLibToolKit.string_2qlDate(effective_day),
                         terminationDate=QuantLibToolKit.string_2qlDate(termination_date),
-                        frequency=QuantLibToolKit.setFrequency(freq_period),
-                        calendar=QuantLibToolKit.setCalendar(calendar))
+                        frequency=QuantLibToolKit.set_frequency(freq_period),
+                        calendar=QuantLibToolKit.set_calendar(calendar))
 
     @staticmethod
-    def setFrequency(freq_period:str)->int:
-        """setFrequency
+    def set_frequency(freq_period:str)->int:
+        """set_frequency
         Description
         -----------
         This function set frequency period for calendar schedule.

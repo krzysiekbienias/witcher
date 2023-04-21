@@ -40,12 +40,18 @@ class PricingEnvironment():
         - theUk
         - USA
         - Poland
-        - Switzerland 
+        - Switzerland
         year_fraction_convention : str, optional
             Name of year count convention that sets rule how year fraction to be calculated, by default "Actual365"
+            Another possible:
+            - Actual360, 
+            - Actual365,
+            - ActualActual,
+            - Thirty360
+            - Business252 
         frequency : str, optional
             Name of frequency according to with tenors are generated. In particular daily if we want to have business days in our schedule,
-              by default "Monthly"
+              by default "monthly"
             Possible parameters:
             - daily
             - once
@@ -75,39 +81,39 @@ class PricingEnvironment():
         # -----------------------
 
         # -----------------------
-        # Region: Quantlib Converter
+        # Region: QuantLib Converter
         # -----------------------
         ql_valuation_date = QuantLibToolKit.string_2qlDate(
             date=self._str_valuation_date)
         ql_termination_date = QuantLibToolKit.string_2qlDate(
             date=self._str_termination_date)
-        date_correction_schema = QuantLibToolKit.setDateCorrectionsSchema()
-        ql_year_fraction_conv = self.setYearFractionConvention(
+        date_correction_schema = QuantLibToolKit.set_date_corrections_schema()
+        ql_year_fraction_conv = self.set_year_fraction_convention(
             year_fraction_conv=self._s_year_fraction_conv)
-        ql_calendar = QuantLibToolKit.setCalendar(country=self._s_calendar)
+        ql_calendar = QuantLibToolKit.set_calendar(country=self._s_calendar)
 
         ql_schedule = self.set_schedule(effectiveDate=ql_valuation_date,
                                        terminationDate=ql_termination_date,
-                                       tenor=ql.Period(QuantLibToolKit.setFrequency(
+                                       tenor=ql.Period(QuantLibToolKit.set_frequency(
                                            freq_period=self._s_frequency)),
                                        calendar=ql_calendar)
         # -----------------------
-        # Region: Quantlib Converter
+        # Region: QuantLib Converter
         # -----------------------
 
         # -----------------------
         # Region: Attributes
         # -----------------------
         self.scheduled_dates = list(ql_schedule)
-        self.year_fractions = self.getYearFractionSequence(schedule=ql_schedule,
+        self.year_fractions = self.get_year_fraction_sequence(schedule=ql_schedule,
                                                            convention=ql_year_fraction_conv)
         self.days_until_expiration=self.scheduled_dates[-1]-self.scheduled_dates[0]
         # -----------------------
         # End Region: Attributes
         # -----------------------
 
-    def setYearFractionConvention(self, year_fraction_conv: str = "Actual365") -> QL:
-        """setYearFractionConvention
+    def set_year_fraction_convention(self, year_fraction_conv: str = "Actual365") -> QL:
+        """set_year_fraction_convention
         Description
         -----------
         Function defines how we will calculate year fraction.
@@ -139,16 +145,15 @@ class PricingEnvironment():
             day_count = ql.Business252()
             return day_count
 
-# TODO implement simplare version of defining schedule
 
     def set_schedule(self,
                     effectiveDate: ql.Date,
                     terminationDate: ql.Date,
                     tenor: ql.Period,
                     calendar: ql.Calendar,
-                    convention=QuantLibToolKit.setDateCorrectionsSchema(),
-                    termination_date_convention=QuantLibToolKit.setDateCorrectionsSchema(),
-                    rule: ql.DateGeneration = QuantLibToolKit.setRuleOfDateGeneration(),
+                    convention=QuantLibToolKit.set_date_corrections_schema(),
+                    termination_date_convention=QuantLibToolKit.set_date_corrections_schema(),
+                    rule: ql.DateGeneration = QuantLibToolKit.set_rule_of_date_generation(date_generation_rules="forward"),
                     endOfMonth: bool = False) -> ql.Schedule:
         """set_schedule
         Description
@@ -166,9 +171,9 @@ class PricingEnvironment():
         calendar : ql.Calendar
             _description_
         convention : _type_, optional
-            _description_, by default QuantLibToolKit.setDateCorrectionsSchema()
+            _description_, by default QuantLibToolKit.set_date_corrections_schema()
         termination_date_convention : _type_, optional
-            _description_, by default QuantLibToolKit.setDateCorrectionsSchema()
+            _description_, by default QuantLibToolKit.set_date_corrections_schema()
         rule : ql.DateGeneration, optional
             _description_, by default QuantLibToolKit.setRuleOfDateGeneration()
         endOfMonth : bool, optional
@@ -182,7 +187,7 @@ class PricingEnvironment():
 
         return ql.Schedule(effectiveDate, terminationDate, tenor, calendar, convention, termination_date_convention, rule, endOfMonth)
 
-    def getYearFractionSequence(self,
+    def get_year_fraction_sequence(self,
                                 schedule: ql.Schedule,
                                 convention: QL) -> List[float]:
         """consecutiveDatesYearFraction
@@ -207,8 +212,8 @@ class PricingEnvironment():
             lf_year_fraction.append(temp_yf)
         return lf_year_fraction
 
-    def displaySchedule(self) -> None:
-        """displaySchedule
+    def display_schedule(self) -> None:
+        """display_schedule
         Description
         -----------
         This method display information about schedule.

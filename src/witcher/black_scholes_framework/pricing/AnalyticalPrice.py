@@ -69,7 +69,7 @@ class EuropeanOptionHandler():
             
         }
 
-    def getInstrinctiveValuePlainVanilla(self):
+    def get_instrinctive_value(self):
         if self._option_type == "CALL":
             return max(self._underlier_price-self._option_strike, 0)
         elif self._option_type == "PUT":
@@ -161,10 +161,10 @@ class BlackScholesAnalyticalPrice(PricingEnvironment):
 
 
 
-    def d1Helper(self,
+    def d1_helper(self,
                  option:EuropeanOptionHandler,
                  market_env:MarketEnvironment) -> float:
-        """d1Helper
+        """d1_helper
         Description
         -----------
         #TODO find the definition of d1.
@@ -187,7 +187,7 @@ class BlackScholesAnalyticalPrice(PricingEnvironment):
         np.sqrt(self.year_fractions) * market_env._sigma)
         return d1
 
-    def d2Helper(self,
+    def d2_helper(self,
                  option:EuropeanOptionHandler,
                  market_env:MarketEnvironment) -> float:
 
@@ -228,9 +228,9 @@ class BlackScholesAnalyticalPrice(PricingEnvironment):
         float
             European option price.
         """
-        d1 = self.d1Helper(self._option,
+        d1 = self.d1_helper(self._option,
                            self._market_env)
-        d2 = self.d2Helper(self._option,
+        d2 = self.d2_helper(self._option,
                            self._market_env)
         if (self._option._option_type == 'CALL'):
             price = S0 * np.exp(-self.year_fractions * dividend) * sc.stats.norm.cdf(d1, 0,
@@ -249,7 +249,7 @@ class BlackScholesAnalyticalPrice(PricingEnvironment):
     # Region Digital Option
     # -----------------------
 
-    def digitalOption(self,
+    def digital_option(self,
                       S0: float,
                       K: float,
                       r: float,
@@ -279,9 +279,9 @@ class BlackScholesAnalyticalPrice(PricingEnvironment):
             _description_
         """
 
-        d1 = self.d1Helper(self._option,
+        d1 = self.d1_helper(self._option,
                            self._market_env)
-        d2 = self.d2Helper(self._option,
+        d2 = self.d2_helper(self._option,
                            self._market_env)
         if (self._option._option_type == 'CALL'):
             price = np.exp(-self.year_fractions * r) * \
@@ -294,15 +294,15 @@ class BlackScholesAnalyticalPrice(PricingEnvironment):
     # End Region Digital Option
     # -----------------------
 
-    def AssetOrNothing(self,
+    def asset_or_nothing(self,
                       S0: float,
                       K: float,
                       r: float,
                       sigma: float,
                       dividend: float=0):
-        d1 = self.d1Helper(self._option,
+        d1 = self.d1_helper(self._option,
                            self._market_env)
-        d2 = self.d2Helper(self._option,
+        d2 = self.d2_helper(self._option,
                            self._market_env)
         if (self._option._option_type == 'call'):
             price = S0 * np.exp(-self.year_fractions * dividend) * sc.stats.norm.cdf(d1, 0, 1)

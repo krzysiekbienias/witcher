@@ -59,10 +59,10 @@ class IOTools:
 
 
     @staticmethod
-    def convertXlsx2Csv(input_path:str,
+    def convert_xlsx_2csv(input_path:str,
                         save_path:str,
                         sheet_name="Sheet1"):
-        """convertXlsx2Csv
+        """convert_xlsx_2csv
         Description
         -----------
         This method convert xlsx format file into csv. It allows to read data frame much quicker in the future in the code
@@ -78,9 +78,9 @@ class IOTools:
         """
 
     @staticmethod
-    def saveContentToTxt(location:str,
+    def save_content_2txt(location:str,
                         arr:Iterable):
-        """saveContentToTxt
+        """save_content_2txt
         Description
         -----------
         This method allows the user to save content of the list into txt file.
@@ -93,7 +93,7 @@ class IOTools:
             Container with elements to be paste into file.
         Example
         -------
-        >>> IOTools.saveContentToTxt(location=r"/Users/krzysiekbienias/Documents/GitHub/EquityAssetClass/drop_point",
+        >>> IOTools.save_content_2txt(location=r"/Users/krzysiekbienias/Documents/GitHub/EquityAssetClass/drop_point",
         >>>                            arr=["GC","Citi","UBS"])
             
         """
@@ -105,9 +105,9 @@ class IOTools:
 
 class XlWingsTools:
     @staticmethod
-    def createNewExcelFile(save_path:str,
+    def create_new_excel_file(save_path:str,
                            sheet_names:List[str]=None):
-        """createNewExcelFile
+        """create_new_excel_file
         Description
         -----------
         This method creates excel file with specific tabs.
@@ -145,8 +145,8 @@ class XlWingsTools:
                 return wb
 
 
-    def clearAllSpreadSheet(file_to_clear:str)->None:
-        """clearAllSpreadSheet
+    def clear_all_spread_sheets(file_to_clear:str)->None:
+        """clear_all_spread_sheets
         Description
         -----------
         This method removes content from each sheet.
@@ -169,12 +169,12 @@ class XlWingsTools:
 
 
     @staticmethod
-    def insertDF(xw_book:xw.Book,
+    def insert_df(xw_book:xw.Book,
                  df:pd.DataFrame,
                  sheet_name:str="Sheet1",
                  anchor:str="A1",
                  index_flag:bool=True)->None:
-        """insertDF
+        """insert_df
         Description
         -----------
 
@@ -205,7 +205,7 @@ class XlWingsTools:
 
         
     @staticmethod
-    def insertPlotFromFig(sheet,
+    def insert_plot_from_fig(sheet,
                           fig,
                           location:str="A1",
                           name:str="MyPlot",
@@ -219,13 +219,13 @@ class XlWingsTools:
 
 
     @staticmethod
-    def insertPlotFromDF(sheet:xw.sheets,
+    def insert_plot_from_df(sheet:xw.sheets,
                          ax_obj:plt.axes,
                          anchor:str,
                          title:str=None,
                          height=200,
                          width=300)->None:
-        """insertPlotFromDF
+        """insert_plot_from_df
         Description
         -----------
         This method drops a plot from DataFrame object in chosen tab and cell. 
@@ -254,11 +254,11 @@ class XlWingsTools:
                             width=width)
 
     @staticmethod
-    def insertHeading(sheet,
+    def insert_heading(sheet,
                      location:str,
                      text:str,
                      rgb_code=(0,0,39)):
-        """insertHeading
+        """insert_heading
         Description
         -----------
         This method insert nice heading for chosen element, graph, table into chosen data frame

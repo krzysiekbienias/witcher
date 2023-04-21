@@ -76,7 +76,7 @@ class SimulationEnvironment():
             date=self._dt_start_simulation_date)
         ql_end_simulation_date = QuantLibToolKit.convertDate2QlDate(
             date=self._dt_end_simulation_date)
-        date_correction_schema = QuantLibToolKit.setDateCorrectionsSchema()
+        date_correction_schema = QuantLibToolKit.set_date_corrections_schema()
         ql_year_fraction_conv = self.setYearFractionConvention(
             year_fraction_conv=self._s_year_fraction_conv)
         ql_calendar = QuantLibToolKit.setCalendar(country=self._s_calendar)
@@ -94,7 +94,7 @@ class SimulationEnvironment():
         # Region: Attributes
         # -----------------------
         self.scheduled_dates = list(ql_schedule)
-        self.year_fractions = self.getYearFractionSequence(schedule=ql_schedule,
+        self.year_fractions = self.get_year_fraction_sequence(schedule=ql_schedule,
                                                            convention=ql_year_fraction_conv)
         # -----------------------
         # End Region: Attributes
@@ -140,9 +140,9 @@ class SimulationEnvironment():
                     terminationDate: DT,
                     tenor: ql.Period,
                     calendar: ql.Calendar,
-                    convention=QuantLibToolKit.setDateCorrectionsSchema(),
-                    end_simulation_date_convention=QuantLibToolKit.setDateCorrectionsSchema(),
-                    rule: ql.DateGeneration = QuantLibToolKit.setRuleOfDateGeneration(),
+                    convention=QuantLibToolKit.set_date_corrections_schema(),
+                    end_simulation_date_convention=QuantLibToolKit.set_date_corrections_schema(),
+                    rule: ql.DateGeneration = QuantLibToolKit.set_rule_of_date_generation(date_generation_rules="forward"),
                     endOfMonth: bool = False) -> ql.Schedule:
         """setSchedule
         Description
@@ -160,11 +160,11 @@ class SimulationEnvironment():
         calendar : ql.Calendar
             Set of rules that defines bank holidays according to chosen country.
         convention : int, optional
-            Convention how to adjust non-working day, by default QuantLibToolKit.setDateCorrectionsSchema()
+            Convention how to adjust non-working day, by default QuantLibToolKit.set_date_corrections_schema()
         end_simulation_date_convention : _type_, optional
-            _description_, by default QuantLibToolKit.setDateCorrectionsSchema()
+            _description_, by default QuantLibToolKit.set_date_corrections_schema()
         rule : ql.DateGeneration, optional
-            _description_, by default QuantLibToolKit.setRuleOfDateGeneration()
+            _description_, by default QuantLibToolKit.set_rule_of_date_generation()
         endOfMonth : bool, optional
             _description_, by default False
 
@@ -175,7 +175,7 @@ class SimulationEnvironment():
 
         return ql.Schedule(effectiveDate, terminationDate, tenor, calendar, convention, end_simulation_date_convention, rule, endOfMonth)
 
-    def getYearFractionSequence(self,
+    def get_year_fraction_sequence(self,
                                 schedule: ql.Schedule,
                                 convention: QL) -> List[float]:
         """consecutiveDatesYearFraction
@@ -200,8 +200,8 @@ class SimulationEnvironment():
             lf_year_fraction.append(temp_yf)
         return lf_year_fraction
 
-    def displaySchedule(self) -> None:
-        """displaySchedule
+    def display_schedule(self) -> None:
+        """display_schedule
         Description
         -----------
         This method display information about schedule.
