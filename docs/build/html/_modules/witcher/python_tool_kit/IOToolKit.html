@@ -127,11 +127,11 @@
         <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>    </div>
 
 
-<div class="viewcode-block" id="IOTools.convertXlsx2Csv"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.IOToolKit.IOTools.convertXlsx2Csv">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">convertXlsx2Csv</span><span class="p">(</span><span class="n">input_path</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
+<div class="viewcode-block" id="IOTools.convert_xlsx_2csv"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.IOToolKit.IOTools.convert_xlsx_2csv">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">convert_xlsx_2csv</span><span class="p">(</span><span class="n">input_path</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
                         <span class="n">save_path</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
                         <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;convertXlsx2Csv</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;convert_xlsx_2csv</span>
 <span class="sd">        Description</span>
 <span class="sd">        -----------</span>
 <span class="sd">        This method convert xlsx format file into csv. It allows to read data frame much quicker in the future in the code</span>
@@ -146,10 +146,10 @@
 <span class="sd">            tab from xlsx file that is going to be saved as csv, by default &quot;Sheet1&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="IOTools.saveContentToTxt"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.IOToolKit.IOTools.saveContentToTxt">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">saveContentToTxt</span><span class="p">(</span><span class="n">location</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
+<div class="viewcode-block" id="IOTools.save_content_2txt"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.IOToolKit.IOTools.save_content_2txt">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">save_content_2txt</span><span class="p">(</span><span class="n">location</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
                         <span class="n">arr</span><span class="p">:</span><span class="n">Iterable</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;saveContentToTxt</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;save_content_2txt</span>
 <span class="sd">        Description</span>
 <span class="sd">        -----------</span>
 <span class="sd">        This method allows the user to save content of the list into txt file.</span>
@@ -162,7 +162,7 @@
 <span class="sd">            Container with elements to be paste into file.</span>
 <span class="sd">        Example</span>
 <span class="sd">        -------</span>
-<span class="sd">        &gt;&gt;&gt; IOTools.saveContentToTxt(location=r&quot;/Users/krzysiekbienias/Documents/GitHub/EquityAssetClass/drop_point&quot;,</span>
+<span class="sd">        &gt;&gt;&gt; IOTools.save_content_2txt(location=r&quot;/Users/krzysiekbienias/Documents/GitHub/EquityAssetClass/drop_point&quot;,</span>
 <span class="sd">        &gt;&gt;&gt;                            arr=[&quot;GC&quot;,&quot;Citi&quot;,&quot;UBS&quot;])</span>
 <span class="sd">            </span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -173,10 +173,10 @@
                             
 
 <div class="viewcode-block" id="XlWingsTools"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.IOToolKit.XlWingsTools">[docs]</a><span class="k">class</span> <span class="nc">XlWingsTools</span><span class="p">:</span>
-<div class="viewcode-block" id="XlWingsTools.createNewExcelFile"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.IOToolKit.XlWingsTools.createNewExcelFile">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">createNewExcelFile</span><span class="p">(</span><span class="n">save_path</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
+<div class="viewcode-block" id="XlWingsTools.create_new_excel_file"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.IOToolKit.XlWingsTools.create_new_excel_file">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">create_new_excel_file</span><span class="p">(</span><span class="n">save_path</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
                            <span class="n">sheet_names</span><span class="p">:</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;createNewExcelFile</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;create_new_excel_file</span>
 <span class="sd">        Description</span>
 <span class="sd">        -----------</span>
 <span class="sd">        This method creates excel file with specific tabs.</span>
@@ -214,8 +214,8 @@
                 <span class="k">return</span> <span class="n">wb</span></div>
 
 
-<div class="viewcode-block" id="XlWingsTools.clearAllSpreadSheet"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.IOToolKit.XlWingsTools.clearAllSpreadSheet">[docs]</a>    <span class="k">def</span> <span class="nf">clearAllSpreadSheet</span><span class="p">(</span><span class="n">file_to_clear</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;clearAllSpreadSheet</span>
+<div class="viewcode-block" id="XlWingsTools.clear_all_spread_sheets"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.IOToolKit.XlWingsTools.clear_all_spread_sheets">[docs]</a>    <span class="k">def</span> <span class="nf">clear_all_spread_sheets</span><span class="p">(</span><span class="n">file_to_clear</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;clear_all_spread_sheets</span>
 <span class="sd">        Description</span>
 <span class="sd">        -----------</span>
 <span class="sd">        This method removes content from each sheet.</span>
@@ -237,13 +237,13 @@
         
 
 
-<div class="viewcode-block" id="XlWingsTools.insertDF"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.IOToolKit.XlWingsTools.insertDF">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">insertDF</span><span class="p">(</span><span class="n">xw_book</span><span class="p">:</span><span class="n">xw</span><span class="o">.</span><span class="n">Book</span><span class="p">,</span>
+<div class="viewcode-block" id="XlWingsTools.insert_df"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.IOToolKit.XlWingsTools.insert_df">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">insert_df</span><span class="p">(</span><span class="n">xw_book</span><span class="p">:</span><span class="n">xw</span><span class="o">.</span><span class="n">Book</span><span class="p">,</span>
                  <span class="n">df</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
                  <span class="n">sheet_name</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">,</span>
                  <span class="n">anchor</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;A1&quot;</span><span class="p">,</span>
                  <span class="n">index_flag</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">-&gt;</span><span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;insertDF</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;insert_df</span>
 <span class="sd">        Description</span>
 <span class="sd">        -----------</span>
 
@@ -273,8 +273,8 @@
                                         <span class="n">expand</span><span class="o">=</span><span class="s1">&#39;table&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">=</span><span class="n">df</span></div>
 
         
-<div class="viewcode-block" id="XlWingsTools.insertPlotFromFig"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.IOToolKit.XlWingsTools.insertPlotFromFig">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">insertPlotFromFig</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span>
+<div class="viewcode-block" id="XlWingsTools.insert_plot_from_fig"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.IOToolKit.XlWingsTools.insert_plot_from_fig">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">insert_plot_from_fig</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span>
                           <span class="n">fig</span><span class="p">,</span>
                           <span class="n">location</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;A1&quot;</span><span class="p">,</span>
                           <span class="n">name</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;MyPlot&quot;</span><span class="p">,</span>
@@ -288,13 +288,13 @@
 
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">insertPlotFromDF</span><span class="p">(</span><span class="n">sheet</span><span class="p">:</span><span class="n">xw</span><span class="o">.</span><span class="n">sheets</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">insert_plot_from_df</span><span class="p">(</span><span class="n">sheet</span><span class="p">:</span><span class="n">xw</span><span class="o">.</span><span class="n">sheets</span><span class="p">,</span>
                          <span class="n">ax_obj</span><span class="p">:</span><span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">,</span>
                          <span class="n">anchor</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
                          <span class="n">title</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                          <span class="n">height</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
                          <span class="n">width</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span><span class="o">-&gt;</span><span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;insertPlotFromDF</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;insert_plot_from_df</span>
 <span class="sd">        Description</span>
 <span class="sd">        -----------</span>
 <span class="sd">        This method drops a plot from DataFrame object in chosen tab and cell. </span>
@@ -322,12 +322,12 @@
                             <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">,</span>
                             <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">)</span>
 
-<div class="viewcode-block" id="XlWingsTools.insertHeading"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.IOToolKit.XlWingsTools.insertHeading">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">insertHeading</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span>
+<div class="viewcode-block" id="XlWingsTools.insert_heading"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.IOToolKit.XlWingsTools.insert_heading">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">insert_heading</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span>
                      <span class="n">location</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
                      <span class="n">text</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
                      <span class="n">rgb_code</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">39</span><span class="p">)):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;insertHeading</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;insert_heading</span>
 <span class="sd">        Description</span>
 <span class="sd">        -----------</span>
 <span class="sd">        This method insert nice heading for chosen element, graph, table into chosen data frame</span>

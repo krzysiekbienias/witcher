@@ -138,7 +138,7 @@
             
         <span class="p">}</span>
 
-<div class="viewcode-block" id="EuropeanOptionHandler.getInstrinctiveValuePlainVanilla"><a class="viewcode-back" href="../../../../witcher.black_scholes_framework.pricing.html#witcher.black_scholes_framework.pricing.AnalyticalPrice.EuropeanOptionHandler.getInstrinctiveValuePlainVanilla">[docs]</a>    <span class="k">def</span> <span class="nf">getInstrinctiveValuePlainVanilla</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="EuropeanOptionHandler.get_instrinctive_value"><a class="viewcode-back" href="../../../../witcher.black_scholes_framework.pricing.html#witcher.black_scholes_framework.pricing.AnalyticalPrice.EuropeanOptionHandler.get_instrinctive_value">[docs]</a>    <span class="k">def</span> <span class="nf">get_instrinctive_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_option_type</span> <span class="o">==</span> <span class="s2">&quot;CALL&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_underlier_price</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_option_strike</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_option_type</span> <span class="o">==</span> <span class="s2">&quot;PUT&quot;</span><span class="p">:</span>
@@ -230,10 +230,10 @@
 
 
 
-<div class="viewcode-block" id="BlackScholesAnalyticalPrice.d1Helper"><a class="viewcode-back" href="../../../../witcher.black_scholes_framework.pricing.html#witcher.black_scholes_framework.pricing.AnalyticalPrice.BlackScholesAnalyticalPrice.d1Helper">[docs]</a>    <span class="k">def</span> <span class="nf">d1Helper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="BlackScholesAnalyticalPrice.d1_helper"><a class="viewcode-back" href="../../../../witcher.black_scholes_framework.pricing.html#witcher.black_scholes_framework.pricing.AnalyticalPrice.BlackScholesAnalyticalPrice.d1_helper">[docs]</a>    <span class="k">def</span> <span class="nf">d1_helper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">option</span><span class="p">:</span><span class="n">EuropeanOptionHandler</span><span class="p">,</span>
                  <span class="n">market_env</span><span class="p">:</span><span class="n">MarketEnvironment</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;d1Helper</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;d1_helper</span>
 <span class="sd">        Description</span>
 <span class="sd">        -----------</span>
 <span class="sd">        #TODO find the definition of d1.</span>
@@ -256,7 +256,7 @@
         <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">year_fractions</span><span class="p">)</span> <span class="o">*</span> <span class="n">market_env</span><span class="o">.</span><span class="n">_sigma</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">d1</span></div>
 
-<div class="viewcode-block" id="BlackScholesAnalyticalPrice.d2Helper"><a class="viewcode-back" href="../../../../witcher.black_scholes_framework.pricing.html#witcher.black_scholes_framework.pricing.AnalyticalPrice.BlackScholesAnalyticalPrice.d2Helper">[docs]</a>    <span class="k">def</span> <span class="nf">d2Helper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="BlackScholesAnalyticalPrice.d2_helper"><a class="viewcode-back" href="../../../../witcher.black_scholes_framework.pricing.html#witcher.black_scholes_framework.pricing.AnalyticalPrice.BlackScholesAnalyticalPrice.d2_helper">[docs]</a>    <span class="k">def</span> <span class="nf">d2_helper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">option</span><span class="p">:</span><span class="n">EuropeanOptionHandler</span><span class="p">,</span>
                  <span class="n">market_env</span><span class="p">:</span><span class="n">MarketEnvironment</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 
@@ -297,9 +297,9 @@
 <span class="sd">        float</span>
 <span class="sd">            European option price.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">d1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d1Helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_option</span><span class="p">,</span>
+        <span class="n">d1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d1_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_option</span><span class="p">,</span>
                            <span class="bp">self</span><span class="o">.</span><span class="n">_market_env</span><span class="p">)</span>
-        <span class="n">d2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d2Helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_option</span><span class="p">,</span>
+        <span class="n">d2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d2_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_option</span><span class="p">,</span>
                            <span class="bp">self</span><span class="o">.</span><span class="n">_market_env</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_option</span><span class="o">.</span><span class="n">_option_type</span> <span class="o">==</span> <span class="s1">&#39;CALL&#39;</span><span class="p">):</span>
             <span class="n">price</span> <span class="o">=</span> <span class="n">S0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">year_fractions</span> <span class="o">*</span> <span class="n">dividend</span><span class="p">)</span> <span class="o">*</span> <span class="n">sc</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
@@ -318,7 +318,7 @@
     <span class="c1"># Region Digital Option</span>
     <span class="c1"># -----------------------</span>
 
-<div class="viewcode-block" id="BlackScholesAnalyticalPrice.digitalOption"><a class="viewcode-back" href="../../../../witcher.black_scholes_framework.pricing.html#witcher.black_scholes_framework.pricing.AnalyticalPrice.BlackScholesAnalyticalPrice.digitalOption">[docs]</a>    <span class="k">def</span> <span class="nf">digitalOption</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="BlackScholesAnalyticalPrice.digital_option"><a class="viewcode-back" href="../../../../witcher.black_scholes_framework.pricing.html#witcher.black_scholes_framework.pricing.AnalyticalPrice.BlackScholesAnalyticalPrice.digital_option">[docs]</a>    <span class="k">def</span> <span class="nf">digital_option</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                       <span class="n">S0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                       <span class="n">K</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                       <span class="n">r</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
@@ -348,9 +348,9 @@
 <span class="sd">            _description_</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">d1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d1Helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_option</span><span class="p">,</span>
+        <span class="n">d1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d1_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_option</span><span class="p">,</span>
                            <span class="bp">self</span><span class="o">.</span><span class="n">_market_env</span><span class="p">)</span>
-        <span class="n">d2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d2Helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_option</span><span class="p">,</span>
+        <span class="n">d2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d2_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_option</span><span class="p">,</span>
                            <span class="bp">self</span><span class="o">.</span><span class="n">_market_env</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_option</span><span class="o">.</span><span class="n">_option_type</span> <span class="o">==</span> <span class="s1">&#39;CALL&#39;</span><span class="p">):</span>
             <span class="n">price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">year_fractions</span> <span class="o">*</span> <span class="n">r</span><span class="p">)</span> <span class="o">*</span> \
@@ -363,15 +363,15 @@
     <span class="c1"># End Region Digital Option</span>
     <span class="c1"># -----------------------</span>
 
-<div class="viewcode-block" id="BlackScholesAnalyticalPrice.AssetOrNothing"><a class="viewcode-back" href="../../../../witcher.black_scholes_framework.pricing.html#witcher.black_scholes_framework.pricing.AnalyticalPrice.BlackScholesAnalyticalPrice.AssetOrNothing">[docs]</a>    <span class="k">def</span> <span class="nf">AssetOrNothing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="BlackScholesAnalyticalPrice.asset_or_nothing"><a class="viewcode-back" href="../../../../witcher.black_scholes_framework.pricing.html#witcher.black_scholes_framework.pricing.AnalyticalPrice.BlackScholesAnalyticalPrice.asset_or_nothing">[docs]</a>    <span class="k">def</span> <span class="nf">asset_or_nothing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                       <span class="n">S0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                       <span class="n">K</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                       <span class="n">r</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                       <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                       <span class="n">dividend</span><span class="p">:</span> <span class="nb">float</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-        <span class="n">d1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d1Helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_option</span><span class="p">,</span>
+        <span class="n">d1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d1_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_option</span><span class="p">,</span>
                            <span class="bp">self</span><span class="o">.</span><span class="n">_market_env</span><span class="p">)</span>
-        <span class="n">d2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d2Helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_option</span><span class="p">,</span>
+        <span class="n">d2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d2_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_option</span><span class="p">,</span>
                            <span class="bp">self</span><span class="o">.</span><span class="n">_market_env</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_option</span><span class="o">.</span><span class="n">_option_type</span> <span class="o">==</span> <span class="s1">&#39;call&#39;</span><span class="p">):</span>
             <span class="n">price</span> <span class="o">=</span> <span class="n">S0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">year_fractions</span> <span class="o">*</span> <span class="n">dividend</span><span class="p">)</span> <span class="o">*</span> <span class="n">sc</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>

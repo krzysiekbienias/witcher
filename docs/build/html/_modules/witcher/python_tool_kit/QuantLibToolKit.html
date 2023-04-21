@@ -113,9 +113,9 @@
         <span class="k">return</span> <span class="n">ql_date</span></div>
 
 
-<div class="viewcode-block" id="QuantLibToolKit.setCalendar"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.setCalendar">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">setCalendar</span><span class="p">(</span><span class="n">country</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;theUK&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">QL</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;setCalendar</span>
+<div class="viewcode-block" id="QuantLibToolKit.set_calendar"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.set_calendar">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">set_calendar</span><span class="p">(</span><span class="n">country</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;theUK&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">QL</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;set_calendar</span>
 <span class="sd">        Description</span>
 <span class="sd">        -----------</span>
 
@@ -144,8 +144,8 @@
         <span class="k">if</span> <span class="n">country</span> <span class="o">==</span> <span class="s1">&#39;Poland&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">ql</span><span class="o">.</span><span class="n">Poland</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="QuantLibToolKit.setDateCorrectionsSchema"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.setDateCorrectionsSchema">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">setDateCorrectionsSchema</span><span class="p">(</span><span class="n">corrections_map</span><span class="p">:</span><span class="n">HM</span><span class="o">=</span><span class="n">_weekday_corrections</span><span class="p">,</span>
+<div class="viewcode-block" id="QuantLibToolKit.set_date_corrections_schema"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.set_date_corrections_schema">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">set_date_corrections_schema</span><span class="p">(</span><span class="n">corrections_map</span><span class="p">:</span><span class="n">HM</span><span class="o">=</span><span class="n">_weekday_corrections</span><span class="p">,</span>
                               <span class="n">correction_rule</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;Following&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;setBusinessConvention</span>
 <span class="sd">        Description</span>
@@ -159,30 +159,35 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">corrections_map</span><span class="p">[</span><span class="n">correction_rule</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="QuantLibToolKit.setRuleOfDateGeneration"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.setRuleOfDateGeneration">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">setRuleOfDateGeneration</span><span class="p">(</span><span class="n">_date_generation_rules</span><span class="o">=</span><span class="n">_date_generation_rules</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;setRuleOfDateGeneration</span>
+<div class="viewcode-block" id="QuantLibToolKit.set_rule_of_date_generation"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.set_rule_of_date_generation">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">set_rule_of_date_generation</span><span class="p">(</span><span class="n">date_generation_rules</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;forward&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;set_rule_of_date_generation</span>
 <span class="sd">        Description</span>
 <span class="sd">        -----------</span>
+<span class="sd">        A rule how to adjust non-working day on working day. We may move forward or backward</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        _type_</span>
 <span class="sd">            _description_</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ql</span><span class="o">.</span><span class="n">DateGeneration</span><span class="o">.</span><span class="n">Forward</span></div>
+        <span class="k">if</span> <span class="n">date_generation_rules</span><span class="o">==</span><span class="s2">&quot;forward&quot;</span><span class="p">:</span>
+           <span class="k">return</span> <span class="n">ql</span><span class="o">.</span><span class="n">DateGeneration</span><span class="o">.</span><span class="n">Forward</span>
+        <span class="k">elif</span> <span class="n">date_generation_rules</span><span class="o">==</span><span class="s2">&quot;backward&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ql</span><span class="o">.</span><span class="n">DateGeneration</span><span class="o">.</span><span class="n">Backward</span></div>
 
 
-<div class="viewcode-block" id="QuantLibToolKit.defineSchedule"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.defineSchedule">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">defineSchedule</span><span class="p">(</span><span class="n">effective_day</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
+<div class="viewcode-block" id="QuantLibToolKit.define_schedule"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.define_schedule">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">define_schedule</span><span class="p">(</span><span class="n">effective_day</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
                        <span class="n">termination_date</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
                        <span class="n">freq_period</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;monthly&quot;</span><span class="p">,</span>
                        <span class="n">calendar</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;theUK&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">ql</span><span class="o">.</span><span class="n">Schedule</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;defineSchedule</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;define_schedule</span>
 <span class="sd">        Description</span>
 <span class="sd">        -----------</span>
 <span class="sd">        Simpler version of defining schedule object. Only required parameters</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        effective_day : str</span>
@@ -202,12 +207,12 @@
 
         <span class="k">return</span> <span class="n">ql</span><span class="o">.</span><span class="n">MakeSchedule</span><span class="p">(</span><span class="n">effectiveDate</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">string_2qlDate</span><span class="p">(</span><span class="n">effective_day</span><span class="p">),</span>
                         <span class="n">terminationDate</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">string_2qlDate</span><span class="p">(</span><span class="n">termination_date</span><span class="p">),</span>
-                        <span class="n">frequency</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">setFrequency</span><span class="p">(</span><span class="n">freq_period</span><span class="p">),</span>
-                        <span class="n">calendar</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">setCalendar</span><span class="p">(</span><span class="n">calendar</span><span class="p">))</span></div>
+                        <span class="n">frequency</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">set_frequency</span><span class="p">(</span><span class="n">freq_period</span><span class="p">),</span>
+                        <span class="n">calendar</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">set_calendar</span><span class="p">(</span><span class="n">calendar</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="QuantLibToolKit.setFrequency"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.setFrequency">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">setFrequency</span><span class="p">(</span><span class="n">freq_period</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;setFrequency</span>
+<div class="viewcode-block" id="QuantLibToolKit.set_frequency"><a class="viewcode-back" href="../../../witcher.python_tool_kit.html#witcher.python_tool_kit.QuantLibToolKit.QuantLibToolKit.set_frequency">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">set_frequency</span><span class="p">(</span><span class="n">freq_period</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;set_frequency</span>
 <span class="sd">        Description</span>
 <span class="sd">        -----------</span>
 <span class="sd">        This function set frequency period for calendar schedule.</span>

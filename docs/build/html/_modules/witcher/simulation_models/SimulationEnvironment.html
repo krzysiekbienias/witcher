@@ -145,7 +145,7 @@
             <span class="n">date</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_dt_start_simulation_date</span><span class="p">)</span>
         <span class="n">ql_end_simulation_date</span> <span class="o">=</span> <span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">convertDate2QlDate</span><span class="p">(</span>
             <span class="n">date</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_dt_end_simulation_date</span><span class="p">)</span>
-        <span class="n">date_correction_schema</span> <span class="o">=</span> <span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">setDateCorrectionsSchema</span><span class="p">()</span>
+        <span class="n">date_correction_schema</span> <span class="o">=</span> <span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">set_date_corrections_schema</span><span class="p">()</span>
         <span class="n">ql_year_fraction_conv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">setYearFractionConvention</span><span class="p">(</span>
             <span class="n">year_fraction_conv</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_s_year_fraction_conv</span><span class="p">)</span>
         <span class="n">ql_calendar</span> <span class="o">=</span> <span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">setCalendar</span><span class="p">(</span><span class="n">country</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_s_calendar</span><span class="p">)</span>
@@ -163,7 +163,7 @@
         <span class="c1"># Region: Attributes</span>
         <span class="c1"># -----------------------</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scheduled_dates</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ql_schedule</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">year_fractions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getYearFractionSequence</span><span class="p">(</span><span class="n">schedule</span><span class="o">=</span><span class="n">ql_schedule</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">year_fractions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_year_fraction_sequence</span><span class="p">(</span><span class="n">schedule</span><span class="o">=</span><span class="n">ql_schedule</span><span class="p">,</span>
                                                            <span class="n">convention</span><span class="o">=</span><span class="n">ql_year_fraction_conv</span><span class="p">)</span>
         <span class="c1"># -----------------------</span>
         <span class="c1"># End Region: Attributes</span>
@@ -209,9 +209,9 @@
                     <span class="n">terminationDate</span><span class="p">:</span> <span class="n">DT</span><span class="p">,</span>
                     <span class="n">tenor</span><span class="p">:</span> <span class="n">ql</span><span class="o">.</span><span class="n">Period</span><span class="p">,</span>
                     <span class="n">calendar</span><span class="p">:</span> <span class="n">ql</span><span class="o">.</span><span class="n">Calendar</span><span class="p">,</span>
-                    <span class="n">convention</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">setDateCorrectionsSchema</span><span class="p">(),</span>
-                    <span class="n">end_simulation_date_convention</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">setDateCorrectionsSchema</span><span class="p">(),</span>
-                    <span class="n">rule</span><span class="p">:</span> <span class="n">ql</span><span class="o">.</span><span class="n">DateGeneration</span> <span class="o">=</span> <span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">setRuleOfDateGeneration</span><span class="p">(),</span>
+                    <span class="n">convention</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">set_date_corrections_schema</span><span class="p">(),</span>
+                    <span class="n">end_simulation_date_convention</span><span class="o">=</span><span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">set_date_corrections_schema</span><span class="p">(),</span>
+                    <span class="n">rule</span><span class="p">:</span> <span class="n">ql</span><span class="o">.</span><span class="n">DateGeneration</span> <span class="o">=</span> <span class="n">QuantLibToolKit</span><span class="o">.</span><span class="n">set_rule_of_date_generation</span><span class="p">(</span><span class="n">date_generation_rules</span><span class="o">=</span><span class="s2">&quot;forward&quot;</span><span class="p">),</span>
                     <span class="n">endOfMonth</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ql</span><span class="o">.</span><span class="n">Schedule</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;setSchedule</span>
 <span class="sd">        Description</span>
@@ -229,11 +229,11 @@
 <span class="sd">        calendar : ql.Calendar</span>
 <span class="sd">            Set of rules that defines bank holidays according to chosen country.</span>
 <span class="sd">        convention : int, optional</span>
-<span class="sd">            Convention how to adjust non-working day, by default QuantLibToolKit.setDateCorrectionsSchema()</span>
+<span class="sd">            Convention how to adjust non-working day, by default QuantLibToolKit.set_date_corrections_schema()</span>
 <span class="sd">        end_simulation_date_convention : _type_, optional</span>
-<span class="sd">            _description_, by default QuantLibToolKit.setDateCorrectionsSchema()</span>
+<span class="sd">            _description_, by default QuantLibToolKit.set_date_corrections_schema()</span>
 <span class="sd">        rule : ql.DateGeneration, optional</span>
-<span class="sd">            _description_, by default QuantLibToolKit.setRuleOfDateGeneration()</span>
+<span class="sd">            _description_, by default QuantLibToolKit.set_rule_of_date_generation()</span>
 <span class="sd">        endOfMonth : bool, optional</span>
 <span class="sd">            _description_, by default False</span>
 
@@ -244,7 +244,7 @@
 
         <span class="k">return</span> <span class="n">ql</span><span class="o">.</span><span class="n">Schedule</span><span class="p">(</span><span class="n">effectiveDate</span><span class="p">,</span> <span class="n">terminationDate</span><span class="p">,</span> <span class="n">tenor</span><span class="p">,</span> <span class="n">calendar</span><span class="p">,</span> <span class="n">convention</span><span class="p">,</span> <span class="n">end_simulation_date_convention</span><span class="p">,</span> <span class="n">rule</span><span class="p">,</span> <span class="n">endOfMonth</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SimulationEnvironment.getYearFractionSequence"><a class="viewcode-back" href="../../../witcher.simulation_models.html#witcher.simulation_models.SimulationEnvironment.SimulationEnvironment.getYearFractionSequence">[docs]</a>    <span class="k">def</span> <span class="nf">getYearFractionSequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="SimulationEnvironment.get_year_fraction_sequence"><a class="viewcode-back" href="../../../witcher.simulation_models.html#witcher.simulation_models.SimulationEnvironment.SimulationEnvironment.get_year_fraction_sequence">[docs]</a>    <span class="k">def</span> <span class="nf">get_year_fraction_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                                 <span class="n">schedule</span><span class="p">:</span> <span class="n">ql</span><span class="o">.</span><span class="n">Schedule</span><span class="p">,</span>
                                 <span class="n">convention</span><span class="p">:</span> <span class="n">QL</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;consecutiveDatesYearFraction</span>
@@ -269,8 +269,8 @@
             <span class="n">lf_year_fraction</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp_yf</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">lf_year_fraction</span></div>
 
-<div class="viewcode-block" id="SimulationEnvironment.displaySchedule"><a class="viewcode-back" href="../../../witcher.simulation_models.html#witcher.simulation_models.SimulationEnvironment.SimulationEnvironment.displaySchedule">[docs]</a>    <span class="k">def</span> <span class="nf">displaySchedule</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;displaySchedule</span>
+<div class="viewcode-block" id="SimulationEnvironment.display_schedule"><a class="viewcode-back" href="../../../witcher.simulation_models.html#witcher.simulation_models.SimulationEnvironment.SimulationEnvironment.display_schedule">[docs]</a>    <span class="k">def</span> <span class="nf">display_schedule</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;display_schedule</span>
 <span class="sd">        Description</span>
 <span class="sd">        -----------</span>
 <span class="sd">        This method display information about schedule.</span>
