@@ -16,29 +16,31 @@ DT = TypeVar('DT')
 class PricingEnvironment():
 
     def __init__(self,
-                 valuation_date: DT,
-                 termination_date: DT,
+                 valuation_date: str,
+                 termination_date: str,
                  calendar: str = "theUK",
                  year_fraction_convention: str = "Actual365",
                  frequency: str = "Monthly",
                  **kwargs):
-        """__init__
+        """
         Description
         -----------
         This class sets up generic the environment for pricing different financial instruments.
 
         Parameters
         ----------
-        valuation_date : DT
-            The date you want to price financial instrument.
+        valuation_date : str
+            The date you want to price financial instrument. Format Y-m-d.
 
-        termination_date : DT
-            Date after which your trade expires.
+        termination_date : str
+            Date after which your trade expires. Format Y-m-d.
         calendar : str, optional
             Name of the specific calendar of dates to follow, by default "theUK". It corresponds with name of country.
         Possible calendar to chose:
         - theUk
         - USA
+        - Poland
+        - Switzerland 
         year_fraction_convention : str, optional
             Name of year count convention that sets rule how year fraction to be calculated, by default "Actual365"
         frequency : str, optional
@@ -63,8 +65,8 @@ class PricingEnvironment():
         # -----------------------
         # Region: Initialization
         # -----------------------
-        self._dt_valuation_date = valuation_date
-        self._dt_termination_date = termination_date
+        self._str_valuation_date = valuation_date
+        self._str_termination_date = termination_date
         self._s_calendar = calendar
         self._s_year_fraction_conv = year_fraction_convention
         self._s_frequency = frequency
@@ -75,10 +77,10 @@ class PricingEnvironment():
         # -----------------------
         # Region: Quantlib Converter
         # -----------------------
-        ql_valuation_date = QuantLibToolKit.convertDate2QlDate(
-            date=self._dt_valuation_date)
-        ql_termination_date = QuantLibToolKit.convertDate2QlDate(
-            date=self._dt_termination_date)
+        ql_valuation_date = QuantLibToolKit.string_2qlDate(
+            date=self._str_valuation_date)
+        ql_termination_date = QuantLibToolKit.string_2qlDate(
+            date=self._str_termination_date)
         date_correction_schema = QuantLibToolKit.setDateCorrectionsSchema()
         ql_year_fraction_conv = self.setYearFractionConvention(
             year_fraction_conv=self._s_year_fraction_conv)

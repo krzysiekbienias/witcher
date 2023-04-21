@@ -22,15 +22,15 @@ class QuantLibToolKit:
                       "Forward":ql.DateGeneration.Forward}
 
     @staticmethod
-    def convertDate2QlDate(date:DT)->QL:
-        """convertDate2QlDate
+    def string_2qlDate(date:str)->QL:
+        """string_2qlDate
         Description
         -----------
-        function converts datetime date object and convert to equivalent quantlib Object
-
+        function converts string date representation and convert to equivalent quantlib object.
+        Date must be in form Y-m-d.
         Parameters
         ----------
-        date : DT
+        date : str
             date time object that gonna be converted. Must be passed as year, month, day
 
         Returns
@@ -39,8 +39,8 @@ class QuantLibToolKit:
             date as a QuantLib object
         """
 
-
-        ql_date = ql.Date(date.day, date.month, date.year)
+        dt_date=datetime.strptime(date,"%Y-%m-%d")
+        ql_date = ql.Date(dt_date.day, dt_date.month, dt_date.year)
         return ql_date
 
 
@@ -131,8 +131,8 @@ class QuantLibToolKit:
             _description_
         """
 
-        return ql.MakeSchedule(effectiveDate=QuantLibToolKit.convertDate2QlDate(effective_day),
-                        terminationDate=QuantLibToolKit.convertDate2QlDate(termination_date),
+        return ql.MakeSchedule(effectiveDate=QuantLibToolKit.string_2qlDate(effective_day),
+                        terminationDate=QuantLibToolKit.string_2qlDate(termination_date),
                         frequency=QuantLibToolKit.setFrequency(freq_period_),
                         calendar=QuantLibToolKit.setCalendar(calendar_))
 

@@ -152,15 +152,15 @@ class SimulationEnvironment():
         Parameters
         ----------
         effectiveDate : DT
-            _description_
+            Date on which we valuate the contract
         terminationDate : DT
-            _description_
+            Date when contract terminates.
         tenor : ql.Period
-            _description_
+            interval between two adjacent dates
         calendar : ql.Calendar
-            _description_
-        convention : _type_, optional
-            _description_, by default QuantLibToolKit.setDateCorrectionsSchema()
+            Set of rules that defines bank holidays according to chosen country.
+        convention : int, optional
+            Convention how to adjust non-working day, by default QuantLibToolKit.setDateCorrectionsSchema()
         end_simulation_date_convention : _type_, optional
             _description_, by default QuantLibToolKit.setDateCorrectionsSchema()
         rule : ql.DateGeneration, optional

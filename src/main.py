@@ -18,11 +18,6 @@ from http import HTTPStatus
 
 
 if __name__=="__main__":
-    
-
-    
-
-
     _pricing_module=True
     _simulation_module=False
 
@@ -38,17 +33,15 @@ if __name__=="__main__":
     if _pricing_module:
         print("")
         print ("You are running pricing module...")
-        pricing_environment = PricingEnvironment(valuation_date=datetime(2022, 4, 10),
-                                        termination_date=datetime(2022, 7, 10),
+        pricing_environment = PricingEnvironment(valuation_date="2023-4-22",
+                                        termination_date="2023-7-22",
                                         frequency='once',
                                         year_fraction_convention='Actual365',
-
                                         calendar='USA')
         pricing_environment.displaySchedule()
         print("-.-"*20)
         european_option=EuropeanOptionHandler(option_type="PUT",
-                                            
-                                            option_strike=67)
+                                              option_strike=67)
         print(european_option)
         print("-.-"*20)
 
@@ -61,8 +54,8 @@ if __name__=="__main__":
 
         analytical_price=BlackScholesAnalyticalPrice(option=european_option,
                                                     market_env=market_env,
-                                                    valuation_date=pricing_environment._dt_valuation_date,
-                                                    termination_date=pricing_environment._dt_termination_date,
+                                                    valuation_date=pricing_environment._str_valuation_date,
+                                                    termination_date=pricing_environment._str_termination_date,
                                                     frequency=pricing_environment._s_frequency,
                                                     year_fraction_convention=pricing_environment._s_year_fraction_conv,
                                                     calendar=pricing_environment._s_calendar
@@ -86,6 +79,4 @@ if __name__=="__main__":
                                     volatility=0.32,
                                     initialisation_point=44,
                                     simulation_schema="Exact_Solution")
-        print("lala")
-        print(':dupa')
-        print("kurwa!!!!")
+        
