@@ -105,7 +105,7 @@ class IOTools:
 
 class XlWingsTools:
     @staticmethod
-    def create_new_excel_file(save_path:str,
+    def create_new_workbook(save_path:str,
                            sheet_names:List[str]=None):
         """create_new_excel_file
         Description
@@ -125,6 +125,14 @@ class XlWingsTools:
             _description_
         """
         if os.path.isfile(save_path):
+            wb=xw.Book(save_path)
+            for sheet_name in sheet_names:
+                if sheet_name in wb.sheet_names:
+                    continue
+                else:
+                    wb.sheets.add(sheet_name)
+            return xw.Book(save_path)        
+            
 
             return xw.Book(save_path)
         else:
@@ -144,26 +152,32 @@ class XlWingsTools:
                 print(f"New file {save_path} has been created.")
                 return wb
 
-
-    def clear_all_spread_sheets(file_to_clear:str)->None:
-        """clear_all_spread_sheets
+    @staticmethod
+    def clear_spread_sheets(file_to_clear:str,
+                            sheets_to_clear:List[str]=None)->None:
+        """clear_spread_sheets
         Description
         -----------
-        This method removes content from each sheet.
+        This method removes content from chosen sheets. If 'sheets_to_clear' is None then all tabs are cleared.
 
         Parameters
         ----------
         file_to_clear : str
-            Name of the file to be cleared.
-
-        Returns
-        -------
-        None
+            File from which we would like to clear.
+        sheets_to_clear : List[str], optional
+            Sheets names to be cleared, by default None
         """
+
+        
+    
         wb=xw.Book(file_to_clear)
         workbook_sheets=wb.sheets
-        for workbook_sheet in workbook_sheets:
-            workbook_sheet.clear()
+        if sheets_to_clear is None:
+            for workbook_sheet in workbook_sheets:
+                workbook_sheet.clear()
+        else:
+            for str_sheet in sheets_to_clear:
+                workbook_sheets[str_sheet].clear()        
 
         
 
@@ -202,6 +216,19 @@ class XlWingsTools:
             xw_sheet.range(anchor).options(pd.DataFrame,
                                         index=index_flag,
                                         expand='table').value=df
+            
+    @staticmethod
+    def style_df(sheet:xw.Sheet,
+                 df:pd.DataFrame,
+                 set_borders=True,
+                 rgb_color_header:tuple=(255,255,204),
+                 bold_headers=True):
+        if set_borders:
+            sheet[0:df.shape[0]+1,df.shape[1]+1].api.Borders.Weight=2
+        if bold_headers:
+            sheet[0:1,0:df.shape[1]+1].api.Font.Bold=True
+        sheet[0:1,0:df.shape[1]+1].color=rgb_color_header
+        sheet.autofit()    
 
         
     @staticmethod
